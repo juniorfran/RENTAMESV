@@ -25,7 +25,7 @@ class Location(models.Model):
     longitude = models.DecimalField(max_digits=10, decimal_places=6)  # Longitud
 
 class Booking(models.Model):
-    renter = models.ForeignKey(Renter, on_delete=models.CASCADE, related_name='bookings')
+    renter = models.ForeignKey(Renter, on_delete=models.CASCADE, related_name='reservas')
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()

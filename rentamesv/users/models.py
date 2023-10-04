@@ -18,7 +18,20 @@ class UserProfile(models.Model):
 
 class User(AbstractUser):
     
-    next
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name=('groups'),
+        blank=True,
+        related_name='custom_users',  # Cambia este nombre
+        related_query_name='custom_user'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name=('user permissions'),
+        blank=True,
+        related_name='custom_users_permissions',  # Cambia este nombre
+        related_query_name='custom_user_permission'
+    )
     # Utilizamos el modelo AbstractUser de Django para la autenticación de usuarios
     # Puedes agregar campos adicionales si es necesario
 
@@ -56,7 +69,7 @@ class Renter(models.Model):
     preferred_vehicle_types = models.ManyToManyField('vehicles.VehicleType', related_name='preferred_renters')
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     preferred_rental_dates = models.CharField(max_length=100)  # Fechas y horarios preferidos
-    preferred_payment_methods = models.ManyToManyField('PaymentMethod', related_name='preferred_renters')
+    preferred_payment_methods = models.ManyToManyField('paymentmethod.PaymentMethod', related_name='preferred_pago_renters')
     required_documents = models.TextField()  # Documentos requeridos para alquilar
     driving_history = models.TextField()  # Historial de conducción
     # Otros campos según tus necesidades
