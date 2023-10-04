@@ -1,0 +1,100 @@
+
+{% block content %}
+<div class="container">
+    <!-- Filtros -->
+    <form id="filter-form">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <label for="location">Ubicación:</label>
+                <select id="location" name="location" class="form-select">
+                    <!-- Agrega opciones de ubicación desde tu base de datos -->
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="make">Marca:</label>
+                <select id="make" name="make" class="form-select">
+                    <!-- Agrega opciones de marca desde tu base de datos -->
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="model">Modelo:</label>
+                <select id="model" name="model" class="form-select">
+                    <!-- Agrega opciones de modelo desde tu base de datos -->
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="year">Año:</label>
+                <select id="year" name="year" class="form-select">
+                    <!-- Agrega opciones de año desde tu base de datos -->
+                </select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="start_date">Fecha de inicio:</label>
+                <input type="date" id="start_date" name="start_date" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="end_date">Fecha de fin:</label>
+                <input type="date" id="end_date" name="end_date" class="form-control">
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </form>
+
+    <!-- Lista de vehículos -->
+    <div id="vehicle-list">
+        <!-- Aquí se cargarán los vehículos con AJAX -->
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if vehicles.has_previous %}
+                <a href="?page=1">&laquo; primero</a>
+                <a href="?page={{ vehicles.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current-page">
+                Página {{ vehicles.number }} de {{ vehicles.paginator.num_pages }}.
+            </span>
+
+            {% if vehicles.has_next %}
+                <a href="?page={{ vehicles.next_page_number }}">siguiente</a>
+                <a href="?page={{ vehicles.paginator.num_pages }}">último &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Función para cargar vehículos y actualizar la lista
+        function loadVehicles() {
+            $.ajax({
+                url: "{% url 'lista_vehiculos' %}",  // Reemplaza 'vehicle_list' con la URL de tu vista de lista de vehículos
+                type: "GET",
+                data: $("#filter-form").serialize(),  // Serializa el formulario con los filtros
+                success: function (data) {
+                    $("#vehicle-list").html(data);  // Actualiza la lista de vehículos
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Manejador para el envío del formulario de filtro
+        $("#filter-form").on("submit", function (e) {
+            e.preventDefault();
+            loadVehicles();  // Carga los vehículos con los filtros aplicados
+        });
+
+        // Carga inicial de vehículos
+        loadVehicles();
+    });
+</script>
+{% endblock content %}

@@ -12,7 +12,7 @@ class Booking(models.Model):
     vehicle = models.ForeignKey(
         Vehicle,
         on_delete=models.CASCADE,
-        related_name='reservas',
+        related_name='reservas'
     )
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
