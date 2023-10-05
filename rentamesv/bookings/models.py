@@ -7,7 +7,7 @@ class Booking(models.Model):
     renter = models.ForeignKey(
         Renter,
         on_delete=models.CASCADE,
-        related_name='reservas_realizadas',  # Cambia este nombre
+        related_name='reservas_realizadas',
     )
     vehicle = models.ForeignKey(
         Vehicle,

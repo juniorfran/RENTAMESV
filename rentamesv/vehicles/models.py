@@ -14,9 +14,17 @@ class Vehicle(models.Model):
     location = models.ForeignKey('Location', on_delete=models.CASCADE)  # Ubicación del vehículo
     owner = models.ForeignKey('users.VehicleOwner', on_delete=models.CASCADE, related_name='owned_vehicles')
     reviews = models.ManyToManyField('users.Review', blank=True, related_name='reviewed_vehicles')
+    color = models.CharField(max_length=50, null=True)
+    puertas = models.CharField(max_length=50, null=True)
+    capacidad = models.CharField(max_length=50, null=True)
+    combustible = models.CharField(max_length=50, null=True)
+    motor = models.CharField(max_length=50, null=True)
+    tipo_freno = models.CharField(max_length=50, null=True)
+    
 
 class VehicleType(models.Model):
     name = models.CharField(max_length=50)
+    capacidad = models.CharField(max_length=50, null=True)
 
 class Location(models.Model):
     name = models.CharField(max_length=100)  # Nombre de la ubicación

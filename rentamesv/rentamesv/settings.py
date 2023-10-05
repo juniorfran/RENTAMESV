@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'transactions',
     'authentication',
     'paymentmethod',
+    'bootstrap5',
     
     
 ]
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'rentamesv.urls'
@@ -81,6 +83,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'base_templates'),
+            os.path.join(BASE_DIR, 'rentamesv/vehicles/templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -154,3 +157,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

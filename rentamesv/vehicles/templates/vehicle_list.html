@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <h1>Lista de Vehículos</h1>
+  
+  <!-- Lista de vehículos -->
+
+
+    
+  <div class="row">
+    {% for vehicle in vehicles %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+            {% comment %} <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.make }} {{ vehicle.model }}"> {% endcomment %}
+            <div class="card-body">
+                <h5 class="card-title">{{ vehicle.make }} {{ vehicle.model }}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Año:</strong> {{ vehicle.year }}</li>
+                    <li class="list-group-item"><strong>Tipo:</strong> {% for types in vehicle_type  %}{{ type.name }}{% endfor %}</li>
+                    <li class="list-group-item"><strong>Precio por hora:</strong> ${{ vehicle.price_hourly }}</li>
+                    <li class="list-group-item"><strong>Color:</strong> {{ vehicle.color }}</li>
+                    <li class="list-group-item"><strong>Puertas:</strong> {{ vehicle.puertas }}</li>
+                    <li class="list-group-item"><strong>Capacidad:</strong> {{ vehicle.capacidad }}</li>
+                    <li class="list-group-item"><strong>Combustible:</strong> {{ vehicle.combustible }}</li>
+                    <li class="list-group-item"><strong>Motor:</strong> {{ vehicle.motor }}</li>
+                    <li class="list-group-item"><strong>Tipo de Freno:</strong> {{ vehicle.tipo_freno }}</li>
+                </ul>
+                <h6 class="card-subtitle mt-3 mb-2 text-muted">Descripción:</h6>
+                <p class="card-text">{{ vehicle.description }}</p>
+                <a href="#" class="btn btn-primary">Reservar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    
+  
+  <!-- Paginación (si es necesario) -->
+  <!-- Paginación -->
+  <div class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if vehicles.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">Primera</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ vehicles.previous_page_number }}">Anterior</a>
+            </li>
+        {% endif %}
+        <li class="page-item active">
+            <span class="page-link">{{ vehicles.number }}</span>
+        </li>
+        {% if vehicles.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ vehicles.next_page_number }}">Siguiente</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ vehicles.paginator.num_pages }}">Última</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Agrega cualquier script adicional que necesites -->
+
+  {% endblock %}
