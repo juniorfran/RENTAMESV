@@ -1,0 +1,171 @@
+body {
+  background: #f7f7f7;
+  font-family: sans-serif;
+}
+
+header {
+  background: #3cb9c1;
+  height: 75px;
+  width: 100%;
+}
+
+header .logo {
+  width: 20%;
+  float: left;
+}
+
+header .logo img {
+  width: 60px;
+  margin-top: 10px;
+  margin-left: 40px;
+  float: left;
+}
+
+header .logo h2 {
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+header nav {
+  width: 70%;
+  float: left;
+  text-align: right;
+  margin-left: 10px;
+}
+
+header nav a {
+  margin-left: 10px;
+  padding: 15px;
+  line-height: 80px;
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  background: rgba(0,0,0,0.3);
+}
+
+.presentacion {
+  width: 80%;
+  min-height: 100px;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.presentacion .logo {
+  width: 90px;
+  margin: auto;
+}
+
+.presentacion .logo img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.presentacion h2 {
+  text-align: center;
+}
+
+.contenedor {
+  width: 80%;
+  margin: auto;
+  min-height: 550px;
+}
+
+.contenedor .producto {
+  box-sizing: border-box;
+  width: 24%;
+  float: left;
+  margin: 4px;
+  padding: 4px;
+  background: #fff;
+  border-radius: 4px;
+  min-height: 300px;
+}
+
+.contenedor .producto .imagen {
+  width: 80%;
+  margin: auto;
+  height: 220px;
+  border-radius: 5px;
+}
+
+.contenedor .producto img {
+  width: 100%;
+}
+
+.contenedor .producto .descripcion {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.contenedor .producto .comprar {
+  width: 100%;
+  margin: auto;
+  height: 30px;
+  color: #fff;
+  background: #64a785;
+  border: none;
+  border-radius: 5px;
+}
+
+.contenedor .producto .comprar:hover {
+  background: #538175;
+  cursor: pointer;
+}
+
+i {
+  color: gold;
+}
+
+@media screen and (max-width: 1000px) {
+  .contenedor {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 815px) {
+  .contenedor {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 815px) {
+  .contenedor .producto {
+    width: 48%;
+    float: left;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .contenedor {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .contenedor .producto {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .contenedor {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .contenedor .producto {
+    width: 100%;
+    float: left;
+  }
+}
+
