@@ -7,37 +7,91 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import UserProfile
+from django.contrib.auth.decorators import login_required
 
 #VISTA DE REGISTRARSE CON EL USUARIO Y LA CLAVE QUE SE LE ASIGNE A TRAVES
+
+
+#VISTA PARA VER EL PERFIL DEL USUARIO
+@login_required(login_url='/home/')  #ESTABLECENDO QUE SOLO LOS
+def profileView(request):
+    perfil = UserProfile.objects.all()
+    
+    context = {
+        'perfil': perfil
+    }
+    
+    return render(request, 'perfil/perfil.html', context)
+
+
+#VISTA PARA REGISTRAR USUARIO SIN ARCHIVO FORM
 def register_view(request):
     if request.method == 'POST':
         username = request.POST['username']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        # Validar que las contraseñas coincidan
+        if password != confirm_password:
+            messages.error(request, 'Las contraseñas no coinciden.')
+            return redirect('home')
+
+        # Verificar si el usuario ya existe
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'El nombre de usuario ya está en uso.')
+            return redirect('home')
+
+        # Crear el nuevo usuario
+        user = User.objects.create_user(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            password=password
+        )
+        user.save()
+
+        messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
+        return redirect('crear_perfil')
+
+    return render(request, 'users/register.html')
+
+## VISTA PARA REGISTRAR UN PERFIL
+@login_required
+def crear_perfil(request):
+        # Verificar si el usuario ya tiene un perfil
+    if UserProfile.objects.filter(user=request.user).exists():
+        return redirect('perfil_usuario')
+
+    if request.method == 'POST':
+        # Obtén el usuario actualmente autenticado
+        user = request.user
+
+        # Obtén los datos del formulario
+        email = request.POST['email']
         numero_telefono = request.POST['numero_telefono']
         direccion = request.POST['direccion']
         nombre = request.POST['nombre']
-        email = request.POST['email']
-        
-        if password1 != password2:
-            messages.error(request, 'Las contraseñas no coinciden.')
-        else:
-            # Comprueba si el usuario ya existe
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'El nombre de usuario ya está en uso.')
-            else:
-                # Crea un nuevo usuario
-                user = User.objects.create_user(username=username, password=password1)
-                
-                # Crea el perfil del usuario
-                profile = UserProfile(user=username, numero_telefono=numero_telefono, direccion=direccion, nombre=nombre, email=email)
-                profile.save()
-                
-                login(request, user)
-                messages.success(request, 'Registro exitoso. Ahora estás conectado.')
-                return redirect('Home')  # Reemplaza 'nombre_de_la_pagina_principal' por la URL de tu página principal.
-    
-    return render(request, 'users/register.html')
+        imagen = request.FILES.get('imagen')  # Asegúrate de que tu formulario incluya un campo de archivo para la imagen
+
+        # Crea el objeto UserProfile relacionado con el usuario autenticado
+        perfil_usuario, creado = UserProfile.objects.get_or_create(user=user)
+        perfil_usuario.email = email
+        perfil_usuario.numero_telefono = numero_telefono
+        perfil_usuario.direccion = direccion
+        perfil_usuario.nombre = nombre
+        if imagen:
+            perfil_usuario.imagen = imagen
+        perfil_usuario.save()
+
+        # Redirecciona a la página de perfil del usuario u otra página que desees
+        return redirect('perfil')
+
+    return render(request, 'perfil/crearperfil.html')
+
 
 #VISTA PARA HACER LOGIN BASADA EN FUNCION SIN ARCHIVOS FORM
 def login_view(request):
