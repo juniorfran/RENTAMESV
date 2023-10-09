@@ -1,12 +1,13 @@
 {% load static %}
 
-<form style="padding-bottom: 0px; margin-bottom: 25px">
+<form style="padding-bottom: 0px; margin-bottom: 25px" method="post" action="{% url "register" %}">
+  {% csrf_token %}
   <div
     class="input-group"
     style="padding-left: 40px; padding-right: 40px"
   >
     <span class="input-group-text">Nombre de usuario</span
-    ><input class="form-control" type="text" />
+    ><input class="form-control" type="text" id="username" name="username"/>
   </div>
   <p></p>
   <div
@@ -14,45 +15,47 @@
     style="padding-left: 40px; padding-right: 40px"
   >
     <span class="input-group-text">Nombres</span
-    ><input class="form-control" type="text" />
+    ><input class="form-control" type="text" id="nombre" name="nombre"/>
   </div>
   <p></p>
   <div
     class="input-group"
-    style="padding-left: 40px; padding-right: 40px"
-  >
-    <span class="input-group-text">Apellidos</span
-    ><input class="form-control" type="text" />
-  </div>
-  <p></p>
-  <div
-    class="input-group"
-    style="padding-left: 40px; padding-right: 40px"
-  >
+    style="padding-left: 40px; padding-right: 40px">
     <span class="input-group-text">Email</span
-    ><input class="form-control" type="email" />
+    ><input class="form-control" type="email" id="email" name="email" />
   </div>
   <p></p>
   <div
     class="input-group"
-    style="margin-left: 0px; padding-left: 40px; padding-right: 40px"
-  >
+    style="padding-left: 40px; padding-right: 40px">
+    <span class="input-group-text">Direccion</span>
+    <input class="form-control" type="text" id="direccion" name="direccion" />
+  </div>
+  <p></p>
+  <div
+    class="input-group"
+    style="padding-left: 40px; padding-right: 40px">
+    <span class="input-group-text">Telefono</span>
+    <input class="form-control" type="tel" pattern="\([0-9]{4}\)[ -][0-9]{4} id="numero_telefono" name="numero_telefono" />
+  </div>
+  <p></p>
+  <div
+    class="input-group"
+    style="margin-left: 0px; padding-left: 40px; padding-right: 40px">
     <span class="input-group-text">Contraseña</span
-    ><input class="form-control" type="password" />
+    ><input class="form-control" type="password1" id="password1" name="password1" />
+  </div>
+  <div
+    class="input-group"
+    style="margin-left: 0px; padding-left: 40px; padding-right: 40px">
+    <span class="input-group-text">Confirmar Contraseña</span
+    ><input class="form-control" type="password2" id="password2" name="password2" />
   </div>
   <p></p>
   <div
     class="form-check form-switch"
     style="margin-right: 258px; margin-left: 20px; padding-left: 64px"
   >
-    <input
-      class="form-check-input"
-      type="checkbox"
-      id="formCheck-1"
-      style="color: rgb(6, 77, 142)"
-    /><label class="form-check-label" for="formCheck-1"
-      >Arrendador</label
-    >
   </div>
   <div
     class="btn-group"

@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/Simple-galeria-de-productos.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/sticky-dark-top-nav-with-dropdown.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/Ultimate-Sidebar-Menu.css' %}" />
+    
     <!-- Estatic file end -->
 
   </head>
@@ -44,6 +45,7 @@
     {% if user.is_authenticated %}
     <div class="container">
       {% block content %}
+      
 
       {% endblock %}
     </div>
@@ -88,9 +90,7 @@
           <div class="modal-body">
             <div class="card mb-5" style="padding-left: 0px">
               <div class="card-body d-flex flex-column align-items-center">
-                <div
-                  class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"
-                >
+                <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
                                 
                 {% include "users/login.html" %}
 

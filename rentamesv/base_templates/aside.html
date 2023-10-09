@@ -156,7 +156,16 @@ id="offcanvas-menu"
         ><a class="dropdown-item" href="#">Settings</a
         ><a class="dropdown-item" href="#">Profile</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Sign out</a>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="dropdown-item" type="submit">Cerrar sesión</button>
+        </form>
+        {% else %}
+        <a class="dropdown-item"  href="#" data-bs-target="#modal-1" data-bs-toggle="modal">Registrarse</a>
+        <a class="dropdown-item"data-bs-target="#modal-2" data-bs-toggle="modal">Iniciar Sesión</a>
+        {% endif %}
+        
       </div>
     </div>
   </div>

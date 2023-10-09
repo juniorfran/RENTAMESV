@@ -9,6 +9,7 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         related_name='profile',
     )
+    email = models.EmailField(max_length=254, null=True)
     numero_telefono = models.CharField(max_length=15)
     direccion = models.CharField(max_length=150)
     nombre = models.CharField(max_length=100)

@@ -1,15 +1,12 @@
 {% load static %}
 
-<form class="text-center" method="post">
+<form class="text-center" method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  {% if form.non_field_errors %}
-      <div class="error">{{ form.non_field_errors }}</div>
-  {% endif %}
   <div class="mb-3">
-    <input class="form-control" type="text" id="id_username" name="username" placeholder="Email" />
+    <input class="form-control" type="text" id="username" name="username" placeholder="Username" />
   </div>
   <div class="mb-3">
-    <input class="form-control" type="password" id="id_password" name="password" placeholder="Password" />
+    <input class="form-control" type="password" id="password" name="password" placeholder="Password" />
   </div>
   <div class="mb-3">
     <button class="btn btn-primary d-block w-100" type="submit">Login</button>
