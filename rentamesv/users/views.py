@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 
 #VISTA PARA VER EL PERFIL DEL USUARIO
-@login_required(login_url='/home/')  #ESTABLECENDO QUE SOLO LOS
+@login_required#ESTABLECENDO QUE SOLO LOS
 def profileView(request):
     perfil = UserProfile.objects.all()
     
@@ -64,7 +64,7 @@ def register_view(request):
 def crear_perfil(request):
         # Verificar si el usuario ya tiene un perfil
     if UserProfile.objects.filter(user=request.user).exists():
-        return redirect('perfil_usuario')
+        return redirect('perfil')
 
     if request.method == 'POST':
         # Obtén el usuario actualmente autenticado
@@ -90,7 +90,7 @@ def crear_perfil(request):
         # Redirecciona a la página de perfil del usuario u otra página que desees
         return redirect('perfil')
 
-    return render(request, 'perfil/crearperfil.html')
+    return render(request, 'perfil/crear_perfil.html')
 
 
 #VISTA PARA HACER LOGIN BASADA EN FUNCION SIN ARCHIVOS FORM
@@ -102,7 +102,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('home')  # Reemplaza 'nombre_de_la_pagina_principal' por la URL de tu página principal.
+            return redirect('home')
         else:
             messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
     return render(request, 'users/login.html')
