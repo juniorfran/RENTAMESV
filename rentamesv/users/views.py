@@ -55,7 +55,7 @@ def register_view(request):
         user.save()
 
         messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-        return redirect('crear_perfil')
+        return redirect('home')
 
     return render(request, 'users/register.html')
 
@@ -69,13 +69,14 @@ def crear_perfil(request):
     if request.method == 'POST':
         # Obtén el usuario actualmente autenticado
         user = request.user
+        email = request.user.email
 
         # Obtén los datos del formulario
-        email = request.POST['email']
+        # email = request.POST['email']
         numero_telefono = request.POST['numero_telefono']
         direccion = request.POST['direccion']
         nombre = request.POST['nombre']
-        imagen = request.FILES.get('imagen')  # Asegúrate de que tu formulario incluya un campo de archivo para la imagen
+        imagen = request.FILES.get('imagen')  # campo de archivo para la imagen
 
         # Crea el objeto UserProfile relacionado con el usuario autenticado
         perfil_usuario, creado = UserProfile.objects.get_or_create(user=user)
@@ -87,7 +88,7 @@ def crear_perfil(request):
             perfil_usuario.imagen = imagen
         perfil_usuario.save()
 
-        # Redirecciona a la página de perfil del usuario u otra página que desees
+        # Redirecciona a la página de perfil del usuario
         return redirect('perfil')
 
     return render(request, 'perfil/crear_perfil.html')

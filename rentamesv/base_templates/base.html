@@ -12,17 +12,17 @@
     <!-- Estatic file -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>{% block title %}RENTAME{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" />
+    <title>{% block title %}RENTAME SV{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi&amp;display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Angkor&amp;display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;display=swap" />
-    <link rel="stylesheet" href="{% static 'assets/css/Roboto.css' %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400&amp;display=swap" />
-    <link rel="stylesheet" href="{% static 'assets/css/Filter.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/Filter.css' %}" /> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/Hero-Carousel-images.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Basic-icons.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Basic-icons.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'assets/css/Roboto.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/Pretty-Product-List-.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/Pretty-Registration-Form-.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/Search-Input-Responsive-with-Icon.css' %}" />
@@ -33,19 +33,18 @@
     <link rel="stylesheet" href="{% static 'assets/css/Simple-galeria-de-productos.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/sticky-dark-top-nav-with-dropdown.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/Ultimate-Sidebar-Menu.css' %}" />
-    
     <!-- Estatic file end -->
+    
 
   </head>
 
   <body>
-    {% include "aside.html" %}
     {% include "navbar.html" %}
-
+    {% include "aside.html" %}
+    
     {% if user.is_authenticated %}
-    <div class="container">
+    <div class="vh-100 d-flex justify-content-center align-items-center">
       {% block content %}
-      
 
       {% endblock %}
     </div>
@@ -102,9 +101,12 @@
     </div>
 
 
-    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+
+
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+    {% comment %} <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script> {% endcomment %}
+    
     <script src="{% static 'assets/js/aos.min.js' %}"></script>
     <script src="{% static 'assets/js/bs-init.js' %}"></script>
     <script src="{% static 'assets/js/navbar.js' %}"></script>

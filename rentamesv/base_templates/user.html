@@ -1,0 +1,55 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'assets/css/users_tab.css' %}" />
+
+
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="header">
+  <div class="inner">
+    <div class="user-ui">
+
+      <div class="user-menu-toggle">
+
+        <div class="profile-img" style="background-image:url(https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg)"></div>
+        <span class="simple-arrow fa fa-chevron-up"></span>
+
+      </div>
+      <!-- User menu -->
+      <div class="user-menu">
+
+        <div class="user-info">
+
+          <div class="profile-img"  style="background-image:url(https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg)"></div>
+          <h3 class="name">Hugo Fonseca</h3>
+          <div class="ui btn normal">Perfil</div>
+
+        </div>
+
+        <div class="invites-info">
+          <span>Next invite in <i>40 days</i></span>
+          <div class="next-invite-bar">
+            <div class="progress" style="width:70%"></div>
+
+          </div>
+
+          <p>You have 2 invites</p>
+          <div class="ui btn normal">INVITE</div>
+        </div>
+
+        <div class="menu-nav">
+          <li><span class="fa fa-tachometer"></span>Panel</li>
+          <li><span class="fa fa-cogs"></span>Settings</li>
+          <li><span class="fa fa-question"></span>Help</li>
+          <li><span class="fa fa-power-off"></span>Sign Out</li>
+        </div>
+      </div>
+
+      <div class="sign-out-icon">
+        <span class="fa fa-power-off"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="{% static 'assets/js/navbar.js' %}"></script>
