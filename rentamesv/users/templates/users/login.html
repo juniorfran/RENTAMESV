@@ -13,3 +13,12 @@
   </div>
   <p class="text-muted">Forgot your password?</p>
 </form>
+
+{% if messages %}
+  <div class="alert alert-primary" role="alert">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}

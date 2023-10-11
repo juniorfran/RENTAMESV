@@ -95,19 +95,24 @@ def crear_perfil(request):
 
 
 #VISTA PARA HACER LOGIN BASADA EN FUNCION SIN ARCHIVOS FORM
+
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('home')
-        else:
-            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Inicio de sesión exitoso.')
+                return redirect('home')
+            else:
+                return redirect('home')
+                messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+        except Exception as e:
+            messages.error(request, 'Se ha producido un error durante el inicio de sesión: {}'.format(str(e)))
+    
     return render(request, 'users/login.html')
-
 
 ##VISTA DE LOGOUT
 def logout_view(request):
