@@ -5,24 +5,37 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
-from .models import UserProfile
+#from django.contrib.auth.models import User
+from .models import UserProfile, VehicleOwner, Renter, User
+from vehicles.models import Vehicle
 from django.contrib.auth.decorators import login_required
 
 #VISTA DE REGISTRARSE CON EL USUARIO Y LA CLAVE QUE SE LE ASIGNE A TRAVES
 
 
 #VISTA PARA VER EL PERFIL DEL USUARIO
-@login_required#ESTABLECENDO QUE SOLO LOS
+@login_required
 def profileView(request):
-    perfil = UserProfile.objects.all()
-    
-    context = {
-        'perfil': perfil
-    }
-    
-    return render(request, 'perfil/perfil.html', context)
+    # Obtiene el perfil del usuario logueado
+    perfil = request.user.profile
 
+    # Obtiene el nombre completo del usuario
+    full_name = request.user.get_full_name()
+
+    # Obtiene el email del usuario
+    email = request.user.email
+
+    # Obtiene los vehículos relacionados con el usuario
+    vehicles = Vehicle.objects.filter(owner__user=request.user)
+
+    context = {
+        'perfil': perfil,
+        'full_name': full_name,
+        'email': email,
+        'vehicles': vehicles,
+    }
+
+    return render(request, 'perfil/perfil.html', context)
 
 #VISTA PARA REGISTRAR USUARIO SIN ARCHIVO FORM
 def register_view(request):
@@ -58,6 +71,7 @@ def register_view(request):
         return redirect('home')
 
     return render(request, 'users/register.html')
+
 
 ## VISTA PARA REGISTRAR UN PERFIL
 @login_required
@@ -95,23 +109,19 @@ def crear_perfil(request):
 
 
 #VISTA PARA HACER LOGIN BASADA EN FUNCION SIN ARCHIVOS FORM
-
 def login_view(request):
     if request.method == 'POST':
-        try:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Inicio de sesión exitoso.')
-                return redirect('home')
-            else:
-                return redirect('home')
-                messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
-        except Exception as e:
-            messages.error(request, 'Se ha producido un error durante el inicio de sesión: {}'.format(str(e)))
-    
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Inicio de sesión exitoso.')
+            return redirect('crear_perfil')
+        else:
+            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+            return redirect('home')
+
     return render(request, 'users/login.html')
 
 ##VISTA DE LOGOUT

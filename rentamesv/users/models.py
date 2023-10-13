@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     numero_telefono = models.CharField(max_length=15)
     direccion = models.CharField(max_length=150)
     nombre = models.CharField(max_length=100)
-    imagen = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
+    imagen = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     
     # Otros campos adicionales, como dirección, imagen de perfil, etc.
 
@@ -23,7 +23,7 @@ class User(AbstractUser):
         Group,
         verbose_name=('groups'),
         blank=True,
-        related_name='custom_users',  # Cambia este nombre
+        related_name='custom_users',  # Cambia este nombr{}
         related_query_name='custom_user'
     )
     user_permissions = models.ManyToManyField(

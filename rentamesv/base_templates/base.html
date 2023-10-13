@@ -43,11 +43,9 @@
     {% include "aside.html" %}
     
     {% if user.is_authenticated %}
-    <div class="vh-100 d-flex justify-content-center align-items-center">
       {% block content %}
 
       {% endblock %}
-    </div>
     {% else %}
       {% include "suscrib.html" %}
       {% include "carusel.html" %}

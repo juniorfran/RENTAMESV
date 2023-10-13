@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, User, VehicleOwner, Renter, Review
+from .models import UserProfile, VehicleOwner, Renter, Review, User
 
 # Register your models here.
 @admin.register(UserProfile)

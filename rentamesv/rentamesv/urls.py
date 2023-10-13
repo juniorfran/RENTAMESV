@@ -4,7 +4,8 @@ from django.conf import settings
 from . import views
 from django.contrib import admin
 from django.urls import include, path
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from users.models import User
 from rest_framework import routers, serializers, viewsets
 
 # Serializers define the API representation.
