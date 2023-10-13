@@ -129,3 +129,10 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')  # Replace 'home' with your desired redirect URL
+
+## VISTA PARA VER LA CANTIDAD DE vehicle QUE ESTAN RELACIONADOS AL USUARIO
+@login_required
+def vervehiculos(request):
+    if (request.user != None and request.user.is_authenticated()):
+        
+        
