@@ -17,8 +17,8 @@
     {% for vehicle in vehicles %}
     <div class="col-md-4 mb-4">
         <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-            {% comment %} <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.make }} {{ vehicle.model }}"> {% endcomment %}
+          
+            <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.make }} {{ vehicle.model }}">
             <div class="card-body">
                 <h5 class="card-title">{{ vehicle.make }} {{ vehicle.model }}</h5>
                 <ul class="list-group list-group-flush">

@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 #VISTA PARA VER EL PERFIL DEL USUARIO
 @login_required
 def profileView(request):
+    
     # Obtiene el perfil del usuario logueado
     perfil = request.user.profile
 
