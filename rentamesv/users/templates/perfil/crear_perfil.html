@@ -2,5 +2,57 @@
     
     {% block content %}
 
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Crear Perfil</div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+    
+                            {% if messages %}
+                            <div class="alert alert-dismissible fade show" role="alert">
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endif %}
+    
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="numero_telefono" class="form-label">Número de Teléfono</label>
+                                <input type="text" class="form-control" id="numero_telefono" name="numero_telefono" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion" required>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="imagen" class="form-label">Imagen de Perfil</label>
+                                <input type="file" class="form-control" id="imagen" name="imagen">
+                            </div>
+    
+                            <button type="submit" class="btn btn-primary">Guardar Perfil</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Incluir jQuery en tu proyecto y agregar código JavaScript aquí si es necesario.
+    </script>
+
     {% endblock content %}
     

@@ -2,6 +2,7 @@ from django.db import models
 from users.models import Renter
 
 class Vehicle(models.Model):
+    
     make = models.CharField(max_length=50)  # Marca del vehículo
     model = models.CharField(max_length=50)  # Modelo del vehículo
     year = models.PositiveIntegerField()  # Año del vehículo
@@ -20,21 +21,25 @@ class Vehicle(models.Model):
     combustible = models.CharField(max_length=50, null=True)
     motor = models.CharField(max_length=50, null=True)
     tipo_freno = models.CharField(max_length=50, null=True)
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
     
 
 class VehicleType(models.Model):
     name = models.CharField(max_length=50)
     capacidad = models.CharField(max_length=50, null=True)
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
 
 class Location(models.Model):
     name = models.CharField(max_length=100)  # Nombre de la ubicación
     address = models.CharField(max_length=200)  # Dirección de la ubicación
     latitude = models.DecimalField(max_digits=10, decimal_places=6)  # Latitud
     longitude = models.DecimalField(max_digits=10, decimal_places=6)  # Longitud
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
 
 class Booking(models.Model):
     renter = models.ForeignKey(Renter, on_delete=models.CASCADE, related_name='reservas')
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
     # Otros campos como estado de reserva, precio, etc.

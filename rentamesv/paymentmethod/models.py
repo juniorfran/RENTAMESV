@@ -8,6 +8,7 @@ class PaymentMethod(models.Model):
     is_active = models.BooleanField(default=True, verbose_name="Activo")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
 
     class Meta:
         verbose_name = "Método de Pago"
@@ -27,6 +28,7 @@ class CreditCardPayment(models.Model):
         related_name='credit_card_payments',
         verbose_name="Transacción asociada"
     )
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
 
     class Meta:
         verbose_name = "Pago con Tarjeta de Crédito"
@@ -43,6 +45,7 @@ class PayPalPayment(models.Model):
         related_name='paypal_payments',
         verbose_name="Transacción asociada"
     )
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
 
     class Meta:
         verbose_name = "Pago con PayPal"
@@ -61,6 +64,7 @@ class BankTransferPayment(models.Model):
         related_name='bank_transfer_payments',
         verbose_name="Transacción asociada"
     )
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
 
     class Meta:
         verbose_name = "Transferencia Bancaria"

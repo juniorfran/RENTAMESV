@@ -16,18 +16,17 @@ from django.contrib.auth.decorators import login_required
 #VISTA PARA VER EL PERFIL DEL USUARIO
 @login_required
 def profileView(request):
-    
-    # Obtiene el perfil del usuario logueado
-    perfil = request.user.profile
+    user = request.user
 
-    # Obtiene el nombre completo del usuario
-    full_name = request.user.get_full_name()
+    # Verificar si el usuario tiene un perfil
+    if not UserProfile.objects.filter(user=user).exists():
+        return redirect('crear_perfil')  # Redireccionar a la vista de creación de perfil
 
-    # Obtiene el email del usuario
-    email = request.user.email
-
-    # Obtiene los vehículos relacionados con el usuario
-    vehicles = Vehicle.objects.filter(owner__user=request.user)
+    # El usuario tiene un perfil, obtén los datos del perfil
+    perfil = user.profile
+    full_name = user.get_full_name()
+    email = user.email
+    vehicles = Vehicle.objects.filter(owner__user=user)
 
     context = {
         'perfil': perfil,
@@ -131,8 +130,8 @@ def logout_view(request):
     return redirect('home')  # Replace 'home' with your desired redirect URL
 
 ## VISTA PARA VER LA CANTIDAD DE vehicle QUE ESTAN RELACIONADOS AL USUARIO
-@login_required
-def vervehiculos(request):
-    if (request.user != None and request.user.is_authenticated()):
+# @login_required
+# def vervehiculos(request):
+#     if (request.user != None and request.user.is_authenticated()):
         
         

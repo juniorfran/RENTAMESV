@@ -14,6 +14,7 @@ class UserProfile(models.Model):
     direccion = models.CharField(max_length=150)
     nombre = models.CharField(max_length=100)
     imagen = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
     
     # Otros campos adicionales, como dirección, imagen de perfil, etc.
 
@@ -33,6 +34,7 @@ class User(AbstractUser):
         related_name='custom_users_permissions',  # Cambia este nombre
         related_query_name='custom_user_permission'
     )
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
     # Utilizamos el modelo AbstractUser de Django para la autenticación de usuarios
     # Puedes agregar campos adicionales si es necesario
 
@@ -53,6 +55,7 @@ class VehicleOwner(models.Model):
     rental_price_daily = models.DecimalField(max_digits=10, decimal_places=2)
     availability_hours = models.CharField(max_length=100)  # Horarios disponibles
     rental_conditions = models.TextField()  # Condiciones de alquiler
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
     # Otros campos según tus necesidades
 
 class Renter(models.Model):
@@ -73,6 +76,7 @@ class Renter(models.Model):
     preferred_payment_methods = models.ManyToManyField('paymentmethod.PaymentMethod', related_name='preferred_pago_renters')
     required_documents = models.TextField()  # Documentos requeridos para alquilar
     driving_history = models.TextField()  # Historial de conducción
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
     # Otros campos según tus necesidades
 
 class Review(models.Model):
@@ -80,3 +84,4 @@ class Review(models.Model):
     comment = models.TextField()  # Comentario
     date_added = models.DateTimeField(auto_now_add=True)  # Fecha de la valoración
     reviewed_by = models.ForeignKey('Renter', on_delete=models.CASCADE, related_name='reviews')
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)

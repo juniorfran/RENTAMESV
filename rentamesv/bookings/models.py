@@ -16,4 +16,5 @@ class Booking(models.Model):
     )
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
     # Otros campos como estado de reserva, precio, etc.

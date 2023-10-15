@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="https://bgrins.github.io/spectrum/spectrum.css">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Crear Vehículo</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Por favor, corrige los siguientes errores:
+                            <ul>
+                                {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                <li>{{ field }}: {{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="marca" class="form-label">Marca</label>
+                            <input type="text" class="form-control" id="marca" name="marca" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="anio" class="form-label">Año</label>
+                            <input type="text" class="form-control" id="anio" name="anio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="color" name="color" />
+                        </div>
+                        <div id="color-display" class="mb-3">
+                            Color seleccionado: <span id="selected-color"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="puertas" class="form-label">cantidad de Puertas</label>
+                            <select class="form-select" aria-label="Selecciona tipo de Puerta" name="puertas" id="puertas">
+                                <option selected>Selecciona una opcion</option>
+                                <option value="dos con Baul">Dos con Baul</option>
+                                <option value="cuatro con Baul">Cuatro con Baul</option>
+                                <option value="cinco con Baul">Cinco con Baul</option>
+                                <option value="tres Puertas">Tres Puertas</option>
+                                <option value="puerta corrediza">Puerta Corrediza</option>
+                              </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="trasmision" class="form-label">Tipo de Transmision</label>
+                            <select class="form-select" aria-label="Selecciona el tipo de Transmision" name="transmision" id="transmision">
+                            <option selected>Selecciona una opcion</option>
+                                <option value="automatico">Automatico</option>
+                                <option value="estandar">Estandar</option>
+                                <option value="otros">Otros</option>
+                              </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cilindraje" class="form-label">Tipo de Cilindraje</label>
+                            <input type="text" class="form-control" id="cilindraje" name="cilindraje" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen del vehiculo</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Ubicación del vehículo</label>
+                            <select class="form-select" id="location" name="location" required>
+                                <option value="">Selecciona una ubicación</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.id }}">{{ location.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo_vehiculo" class="form-label">Tipo de vehículo</label>
+                            <select class="form-select" id="tipo_vehiculo" name="tipo_vehiculo" required>
+                                <option value="">Selecciona un tipo de vehículo</option>
+                                {% for vehicle_type in vehicle_types %}
+                                    <option value="{{ vehicle_type.id }}">{{ vehicle_type.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción del vehículo</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio_por_hora" class="form-label">Precio por hora</label>
+                            <input type="number" class="form-control" id="precio_por_hora" name="precio_por_hora" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio_por_dia" class="form-label">Precio por día</label>
+                            <input type="number" class="form-control" id="precio_por_dia" name="precio_por_dia" step="0.01" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="disponibilidad" name="disponibilidad" value="true" checked>
+                            <label class="form-check-label" for="disponibilidad">Disponibilidad</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="combustible" class="form-label">Tipo de combustible</label>
+                            <select class="form-select" aria-label="Selecciona el tipo de Transmision" name="combustible" id="combustible">
+                                <option selected>Selecciona una opcion</option>
+                                    <option value="gasolina superior">Gasolina Superior</option>
+                                    <option value="gasolina regular">Gasolina Estandar</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="gas">Gas</option>
+                                    <option value="hybrido">Hybrido</option>
+                                    <option value="otro">Otros</option>
+                                  </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="motor" class="form-label">Tipo de motor</label>
+                            <input type="text" class="form-control" id="motor" name="motor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo_freno" class="form-label">Tipo de freno</label>
+                            <input type="text" class="form-control" id="tipo_freno" name="tipo_freno">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar Vehículo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#color").spectrum({
+            showPaletteOnly: true,
+            showPalette: true,
+            color: "#000",  // Color predeterminado
+            palette: [
+                ["#000", "#FFF", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"]
+                // Agrega más colores si es necesario
+            ],
+            change: function(color) {
+                $("#selected-color").text(color.toName());
+            }
+        });
+    });
+    // Incluir jQuery en tu proyecto y agregar código JavaScript aquí si es necesario.
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://bgrins.github.io/spectrum/spectrum.js"></script>
+
+{% endblock content %}

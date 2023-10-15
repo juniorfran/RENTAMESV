@@ -5,3 +5,4 @@ class Location(models.Model):
     address = models.CharField(max_length=200)  # Dirección de la ubicación
     latitude = models.DecimalField(max_digits=10, decimal_places=6)  # Latitud
     longitude = models.DecimalField(max_digits=10, decimal_places=6)  # Longitud
+    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)

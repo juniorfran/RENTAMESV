@@ -6,3 +6,4 @@ class Review(models.Model):
     comment = models.TextField()  # Comentario
     date_added = models.DateTimeField(auto_now_add=True)  # Fecha de la valoración
     reviewed_by = models.ForeignKey(Renter, on_delete=models.CASCADE, related_name='reviews_given')
+    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
