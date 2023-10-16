@@ -134,4 +134,29 @@ def logout_view(request):
 # def vervehiculos(request):
 #     if (request.user != None and request.user.is_authenticated()):
         
-        
+
+def become_owner(request):
+    if request.method == 'POST':
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.is_owner = True
+        user_profile.save()
+        return redirect('complete_verification')  # Redirige a la página de verificación
+
+    return render(request, 'become_owner.html')
+
+
+# Vista para completar la información de verificación
+def complete_verification(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        # Procesa el formulario de información de verificación
+        # ...
+
+        # Crea un objeto VehicleOwner relacionado con el perfil de usuario
+        vehicle_owner, created = VehicleOwner.objects.get_or_create(user_profile=user_profile)
+        # Actualiza los campos del objeto VehicleOwner según los datos del formulario
+
+        return redirect('dashboard')  # Redirige al panel de control
+
+    return render(request, 'complete_verification.html')
+

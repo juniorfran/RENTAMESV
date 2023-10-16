@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     numero_telefono = models.CharField(max_length=15)
     direccion = models.CharField(max_length=150)
     nombre = models.CharField(max_length=100)
+    is_owner = models.BooleanField(default=False, null=True)
     imagen = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
     

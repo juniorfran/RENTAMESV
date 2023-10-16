@@ -1,0 +1,6 @@
+<form class="form-control" method="post">
+    {% csrf_token %}
+    <label for="is_owner">Deseo ser propietario de vehículos:</label>
+    <input type="checkbox" name="is_owner" id="is_owner" required>
+    <button type="submit">Enviar</button>
+</form>

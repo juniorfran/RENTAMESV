@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from vehicles.models import Vehicle, VehicleType, Location
 from reviews.models import Review
+from users.models import User
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,7 +10,7 @@ from django.views.generic.edit import CreateView
 
 # Create your views here.
 
-
+@login_required
 def vehicle_list(request):
     vehicles = Vehicle.objects.all()
     vehicle_types = VehicleType.objects.all()
@@ -36,14 +37,14 @@ def crear_vehiculo(request):
 
     if request.method == 'POST':
         # Obtén los datos del formulario
-        marca = request.POST['make']
-        modelo = request.POST['model']
-        anio = request.POST['year']
+        marca = request.POST['marca']
+        modelo = request.POST['modelo']
+        anio = request.POST['anio']
         color = request.POST['color']
         puertas = request.POST['puertas']
         transmision = request.POST['transmision']  # Agrega este campo
         cilindraje = request.POST['cilindraje']
-        imagen = request.FILES.get('image')  # Campo de archivo para la imagen
+        imagen = request.FILES.get('imagen')  # Campo de archivo para la imagen
         descripcion = request.POST['descripcion']  # Agrega este campo
         precio_por_hora = request.POST['precio_por_hora']  # Agrega este campo
         precio_por_dia = request.POST['precio_por_dia']  # Agrega este campo
