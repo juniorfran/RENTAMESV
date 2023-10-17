@@ -1,6 +1,11 @@
-<form class="form-control" method="post">
-    {% csrf_token %}
-    <label for="is_owner">Deseo ser propietario de vehículos:</label>
-    <input type="checkbox" name="is_owner" id="is_owner" required>
-    <button type="submit">Enviar</button>
-</form>
+<div class="container mt-5">
+    <h1>Registro como Propietario</h1>
+    <form class="form-control needs-validation" method="post"  action="{% url 'become_owner' %}" novalidate>
+        {% csrf_token %}
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="is_owner" id="is_owner" required>
+            <label class="form-check-label" for="is_owner">Deseo ser propietario de vehículos</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
+</div>

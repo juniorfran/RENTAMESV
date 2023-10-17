@@ -3,6 +3,16 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
+def user_directory_path(instance, filename):
+    # instance es el modelo UserProfile al que se adjuntará la imagen
+    # filename es el nombre del archivo original
+
+    # Obtén el nombre de usuario del usuario al que pertenece la instancia
+    username = instance.user.username
+
+    # Define la ruta donde se guardarán las imágenes
+    # En este ejemplo, se guardarán en una carpeta con el nombre del usuario dentro de 'profile_images/'
+    return f'profile_images/user_{username}/{filename}'
 class UserProfile(models.Model):
     user = models.OneToOneField(
         'User',
@@ -14,8 +24,8 @@ class UserProfile(models.Model):
     direccion = models.CharField(max_length=150)
     nombre = models.CharField(max_length=100)
     is_owner = models.BooleanField(default=False, null=True)
-    imagen = models.ImageField(upload_to='profile_images/', null=True, blank=True)
-    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
+    imagen = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
+    create_add = models.DateField(auto_now=True, auto_now_add=False,  null=True)
     
     # Otros campos adicionales, como dirección, imagen de perfil, etc.
 
@@ -56,7 +66,10 @@ class VehicleOwner(models.Model):
     rental_price_daily = models.DecimalField(max_digits=10, decimal_places=2)
     availability_hours = models.CharField(max_length=100)  # Horarios disponibles
     rental_conditions = models.TextField()  # Condiciones de alquiler
-    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    create_add = models.DateField(auto_now=True, auto_now_add=False, null=True)
+    foto1_dui = models.FileField( upload_to=user_directory_path, max_length=100, null=True)
+    foto2_dui = models.FileField( upload_to=user_directory_path, max_length=100, null=True)
+    foto_licencia = models.FileField( upload_to=user_directory_path, max_length=100, null=True)
     # Otros campos según tus necesidades
 
 class Renter(models.Model):
@@ -77,7 +90,7 @@ class Renter(models.Model):
     preferred_payment_methods = models.ManyToManyField('paymentmethod.PaymentMethod', related_name='preferred_pago_renters')
     required_documents = models.TextField()  # Documentos requeridos para alquilar
     driving_history = models.TextField()  # Historial de conducción
-    create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    create_add = models.DateField(auto_now=True, auto_now_add=False, null=True)
     # Otros campos según tus necesidades
 
 class Review(models.Model):
@@ -85,4 +98,4 @@ class Review(models.Model):
     comment = models.TextField()  # Comentario
     date_added = models.DateTimeField(auto_now_add=True)  # Fecha de la valoración
     reviewed_by = models.ForeignKey('Renter', on_delete=models.CASCADE, related_name='reviews')
-    create_add = models.DateField(auto_now=False, auto_now_add=False,  null=True)
+    create_add = models.DateField(auto_now=True, auto_now_add=False,  null=True)

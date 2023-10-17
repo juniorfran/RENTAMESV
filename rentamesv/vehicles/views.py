@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from vehicles.models import Vehicle, VehicleType, Location
+from vehicles.models import Imagen, Vehicle, VehicleType, Location
 from reviews.models import Review
 from users.models import User
 from django.core.paginator import Paginator
@@ -44,7 +44,6 @@ def crear_vehiculo(request):
         puertas = request.POST['puertas']
         transmision = request.POST['transmision']  # Agrega este campo
         cilindraje = request.POST['cilindraje']
-        imagen = request.FILES.get('imagen')  # Campo de archivo para la imagen
         descripcion = request.POST['descripcion']  # Agrega este campo
         precio_por_hora = request.POST['precio_por_hora']  # Agrega este campo
         precio_por_dia = request.POST['precio_por_dia']  # Agrega este campo
@@ -65,9 +64,6 @@ def crear_vehiculo(request):
         vehicle.puertas = puertas
         vehicle.transmision = transmision
         vehicle.cilindraje = cilindraje
-        vehicle.image = imagen
-        vehicle.location_id = request.POST['location']  # Asegúrate de obtener la ubicación correctamente
-        vehicle.vehicle_type_id = request.POST['tipo_vehiculo']  # Asegúrate de obtener el tipo de vehículo correctamente
         vehicle.description = descripcion
         vehicle.price_hourly = precio_por_hora
         vehicle.price_daily = precio_por_dia
@@ -77,8 +73,15 @@ def crear_vehiculo(request):
         vehicle.tipo_freno = tipo_freno
         vehicle.save()
 
+        # Procesa las imágenes
+        imagenes = request.FILES.getlist('imagenes[]')  # Obtiene una lista de archivos
+        for imagen in imagenes:
+            imagen_obj = Imagen(image=imagen)
+            imagen_obj.save()
+            vehicle.image.add(imagen_obj)
+
         return redirect('vehicle_user_list')
-        
+
     context = {
         'locations': locations,
         'vehicle_types': vehicle_types

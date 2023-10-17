@@ -142,7 +142,7 @@ def become_owner(request):
         user_profile.save()
         return redirect('complete_verification')  # Redirige a la página de verificación
 
-    return render(request, 'become_owner.html')
+    return render(request, 'owner/become_owner.html')
 
 
 # Vista para completar la información de verificación
@@ -158,5 +158,5 @@ def complete_verification(request):
 
         return redirect('dashboard')  # Redirige al panel de control
 
-    return render(request, 'complete_verification.html')
+    return render(request, 'owner/complete_verification.html')
 
