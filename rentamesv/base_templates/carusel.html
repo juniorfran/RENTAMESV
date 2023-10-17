@@ -1,143 +1,36 @@
-<div
-class="carousel slide"
-data-bs-ride="carousel"
-id="carousel-1"
-style="height: 600px"
->
-<div class="carousel-inner h-100">
-  <div class="carousel-item active h-100">
-    <img
-      class="w-100 d-block position-absolute h-100 fit-cover"
-      src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"
-      alt="Slide Image"
-      style="z-index: -1"
-    />
-    <div
-      class="container d-flex flex-column justify-content-center h-100"
-    >
-      <div class="row">
-        <div class="col-md-6 col-xl-4 offset-md-2">
-          <div style="max-width: 350px">
-            <h1 class="text-uppercase fw-bold">
-              Biben dum<br />fringi dictum, augue purus
-            </h1>
-            <p class="my-3">
-              Tincidunt laoreet leo, adipiscing taciti tempor. Primis
-              senectus sapien, risus donec ad fusce augue interdum.
-            </p>
-            <a class="btn btn-primary btn-lg me-2" role="button" href="#"
-              >Button</a
-            ><a
-              class="btn btn-outline-primary btn-lg"
-              role="button"
-              href="#"
-              >Button</a
-            >
-          </div>
+{% load static %}
+
+<!-- car -->
+<div  class="car">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="titlepage">
+              <h2> Para todos los gustos </h2>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</span>
+           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="carousel-item h-100">
-    <img
-      class="w-100 d-block position-absolute h-100 fit-cover"
-      src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"
-      alt="Slide Image"
-      style="z-index: -1"
-    />
-    <div
-      class="container d-flex flex-column justify-content-center h-100"
-    >
-      <div class="row">
-        <div class="col-md-6 col-xl-4 offset-md-2">
-          <div style="max-width: 350px">
-            <h1 class="text-uppercase fw-bold">
-              Biben dum<br />fringi dictum, augue purus
-            </h1>
-            <p class="my-3">
-              Tincidunt laoreet leo, adipiscing taciti tempor. Primis
-              senectus sapien, risus donec ad fusce augue interdum.
-            </p>
-            <a class="btn btn-primary btn-lg me-2" role="button" href="#"
-              >Button</a
-            ><a
-              class="btn btn-outline-primary btn-lg"
-              role="button"
-              href="#"
-              >Button</a
-            >
-          </div>
+     </div>
+     <div class="row">
+        <div class="col-md-4 padding_leri">
+           <div class="car_box">
+              <figure><img src="{% static "plantilla/images/car_img1.png" %}" alt="#"/></figure>
+              <h3>Hundai</h3>
+           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="carousel-item h-100">
-    <img
-      class="w-100 d-block position-absolute h-100 fit-cover"
-      src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"
-      alt="Slide Image"
-      style="z-index: -1"
-    />
-    <div
-      class="container d-flex flex-column justify-content-center h-100"
-    >
-      <div class="row">
-        <div class="col-md-6 col-xl-4 offset-md-2">
-          <div style="max-width: 350px">
-            <h1 class="text-uppercase fw-bold">
-              Biben dum<br />fringi dictum, augue purus
-            </h1>
-            <p class="my-3">
-              Tincidunt laoreet leo, adipiscing taciti tempor. Primis
-              senectus sapien, risus donec ad fusce augue interdum.
-            </p>
-            <a class="btn btn-primary btn-lg me-2" role="button" href="#"
-              >Button</a
-            ><a
-              class="btn btn-outline-primary btn-lg"
-              role="button"
-              href="#"
-              >Button</a
-            >
-          </div>
+        <div class="col-md-4 padding_leri">
+           <div class="car_box">
+              <figure><img src="{% static "plantilla/images/car_img2.png" %}" alt="#"/></figure>
+              <h3>Audi</h3>
+           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-4 padding_leri">
+           <div class="car_box">
+              <figure><img src="{% static "plantilla/images/car_img3.png" %}" alt="#"/></figure>
+              <h3>Bmw x5</h3>
+           </div>
+        </div>
+     </div>
   </div>
 </div>
-<div>
-  <a
-    class="carousel-control-prev"
-    href="#carousel-1"
-    role="button"
-    data-bs-slide="prev"
-    ><span class="carousel-control-prev-icon"></span
-    ><span class="visually-hidden">Previous</span></a
-  ><a
-    class="carousel-control-next"
-    href="#carousel-1"
-    role="button"
-    data-bs-slide="next"
-    ><span class="carousel-control-next-icon"></span
-    ><span class="visually-hidden">Next</span></a
-  >
-</div>
-<div class="carousel-indicators">
-  <button
-    type="button"
-    data-bs-target="#carousel-1"
-    data-bs-slide-to="0"
-    class="active"
-  ></button>
-  <button
-    type="button"
-    data-bs-target="#carousel-1"
-    data-bs-slide-to="1"
-  ></button>
-  <button
-    type="button"
-    data-bs-target="#carousel-1"
-    data-bs-slide-to="2"
-  ></button>
-</div>
-</div>
+<!-- end car -->

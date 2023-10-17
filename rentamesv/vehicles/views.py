@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from vehicles.models import Imagen, Vehicle, VehicleType, Location
 from reviews.models import Review
 from users.models import User
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -16,15 +16,27 @@ def vehicle_list(request):
     vehicle_types = VehicleType.objects.all()
     locations = Location.objects.all()
     
+    vehicles = Vehicle.objects.all()
+    paginator = Paginator(vehicles, 10)  # Configurar el paginador con 10 elementos por página
+    page = request.GET.get('page')
+    
+    try:
+        vehicles = paginator.page(page)  # Obtener la página específica
+    except PageNotAnInteger:
+        # Si la página no es un número entero, mostrar la primera página.
+        vehicles = paginator.page(1)
+    except EmptyPage:
+        # Si la página está fuera de rango (por encima del número máximo de páginas), mostrar la última página.
+        vehicles = paginator.page(paginator.num_pages)
+
+        
+    print(paginator)
+    
     context = {
         'vehicles': vehicles,
         'vehicle_types': vehicle_types,
         'locations': locations
     }
-    
-    paginator = Paginator(vehicles, 10)
-    page = request.GET.get('page')
-    vehicles = paginator.get_page(page)
     
     return render(request, 'vehicle_list.html', context)
 

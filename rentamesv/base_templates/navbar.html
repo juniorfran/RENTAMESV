@@ -1,5 +1,79 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'assets/css/users_tab.css' %}" />
+      <!-- header -->
+      <header>
+        <!-- header inner -->
+        <div class="header">
+           <div class="container">
+              <div class="row">
+                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                    <div class="full">
+                       <div class="center-desk">
+                          <div class="logo">
+                             <a href="{% url "home" %}"><img width="60" src="{% static "plantilla/images/logotipo.png" %} " alt="#" /></a>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+                       </button>
+                       <div class="collapse navbar-collapse" id="navbarsExample04">
+                          
+                          {% if user.is_authenticated %}
+
+                          <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                               <a class="nav-link" href="{% url "home" %}"> Inicio  </a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="{% url "vehicle_list" %}">Autos</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url "perfil" %}">Perfil</a>
+                           </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="#">Mensajes</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Ajustes</a>
+                           </li>
+                         </ul>
+                            <form method="post" action="{% url 'logout' %}">
+                              {% csrf_token %}
+                              <div class="sign_btn">
+                                <button class="btn btn-warning" type="submit">Cerrar sesión</button>
+                              </div>
+                            </form>
+                            {% else %}
+                            <ul class="navbar-nav mr-auto">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{% url "home" %}"> Inicio  </a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#">Nosotros</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#">Autos</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#">Contactanos</a>
+                              </li>
+                           </ul>
+                            <div class="sign_btn"><a href="#" data-bs-target="#modal-2" data-bs-toggle="modal">Iniciar sesion</a></div>
+                            {% endif %}
+
+                       </div>
+                    </nav>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </header>
+  <!-- end header inner -->
+<!-- end header -->
+{% comment %} <link rel="stylesheet" href="{% static 'assets/css/users_tab.css' %}" />
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url "home" %}">RENTAME SV</a>
@@ -56,4 +130,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> {% endcomment %}
