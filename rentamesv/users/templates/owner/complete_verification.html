@@ -1,5 +1,68 @@
-<form method="post">
-    {% csrf_token %}
-    <!-- Campos para la información de verificación -->
-    <button type="submit">Guardar información</button>
-</form>
+{% extends "base.html" %}
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Verification</title>
+    <!-- Agrega los enlaces a las bibliotecas de Bootstrap y jQuery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #fff; color: #000;">
+    {% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Complete Verification</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Campos del formulario -->
+                            <div class="mb-3">
+                                <label for="id_document" class="form-label">ID Document:</label>
+                                <input type="text" name="id_document" id="id_document" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="emergency_contact" class="form-label">Emergency Contact:</label>
+                                <input type="text" name="emergency_contact" id="emergency_contact" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rental_price_hourly" class="form-label">Rental Price (Hourly):</label>
+                                <input type="text" name="rental_price_hourly" id="rental_price_hourly" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rental_price_daily" class="form-label">Rental Price (Daily):</label>
+                                <input type="text" name="rental_price_daily" id="rental_price_daily" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Availability Hours:</label>
+                                <input type="text" name="availability_hours" id="availability_hours" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rental_conditions" class="form-label">Rental Conditions:</label>
+                                <textarea name="rental_conditions" id="rental_conditions" class="form-control" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="foto1_dui" class="form-label">Photo 1 of ID (DUI):</label>
+                                <input type="file" name="foto1_dui" id="foto1_dui" class="form-control" accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="foto2_dui" class="form-label">Photo 2 of ID (DUI):</label>
+                                <input type="file" name="foto2_dui" id="foto2_dui" class="form-control" accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="foto_licencia" class="form-label">Driver's License Photo:</label>
+                                <input type="file" name="foto_licencia" id="foto_licencia" class="form-control" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-warning">Complete Verification</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+</body>

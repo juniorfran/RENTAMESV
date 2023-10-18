@@ -62,7 +62,7 @@ class VehicleOwner(models.Model):
     # Historial de alquiler de vehículos
     rented_vehicles = models.ManyToManyField('vehicles.Vehicle', blank=True, related_name='owners')
     # Preferencias de alquiler
-    rental_price_hourly = models.DecimalField(max_digits=10, decimal_places=2)
+    rental_price_hourly = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     rental_price_daily = models.DecimalField(max_digits=10, decimal_places=2)
     availability_hours = models.CharField(max_length=100)  # Horarios disponibles
     rental_conditions = models.TextField()  # Condiciones de alquiler

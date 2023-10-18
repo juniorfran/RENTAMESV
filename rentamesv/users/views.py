@@ -125,6 +125,7 @@ def login_view(request):
     return render(request, 'users/login.html')
 
 ##VISTA DE LOGOUT
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')  # Replace 'home' with your desired redirect URL
@@ -134,7 +135,7 @@ def logout_view(request):
 # def vervehiculos(request):
 #     if (request.user != None and request.user.is_authenticated()):
         
-
+@login_required
 def become_owner(request):
     if request.method == 'POST':
         user_profile = UserProfile.objects.get(user=request.user)
@@ -146,15 +147,42 @@ def become_owner(request):
 
 
 # Vista para completar la información de verificación
+@login_required
 def complete_verification(request):
     user_profile = UserProfile.objects.get(user=request.user)
+
     if request.method == 'POST':
         # Procesa el formulario de información de verificación
-        # ...
+        id_document = request.POST.get('id_document')
+        emergency_contact = request.POST.get('emergency_contact')
+        rental_price_hourly = request.POST.get('rental_price_hourly')
+        rental_price_daily = request.POST.get('rental_price_daily')
+        availability_hours = request.POST.get('availability_hours')
+        rental_conditions = request.POST.get('rental_conditions')
+        
+        # Procesa las imágenes adjuntas si se proporcionan
+        foto1_dui = request.FILES.get('foto1_dui')
+        foto2_dui = request.FILES.get('foto2_dui')
+        foto_licencia = request.FILES.get('foto_licencia')
 
         # Crea un objeto VehicleOwner relacionado con el perfil de usuario
-        vehicle_owner, created = VehicleOwner.objects.get_or_create(user_profile=user_profile)
-        # Actualiza los campos del objeto VehicleOwner según los datos del formulario
+        vehicle_owner, created = VehicleOwner.objects.get_or_create(user=user_profile.user)
+        vehicle_owner.id_document = id_document
+        vehicle_owner.emergency_contact = emergency_contact
+        vehicle_owner.rental_price_hourly = rental_price_hourly
+        vehicle_owner.rental_price_daily = rental_price_daily
+        vehicle_owner.availability_hours = availability_hours
+        vehicle_owner.rental_conditions = rental_conditions
+
+        # Asigna las imágenes si se proporcionan
+        if foto1_dui:
+            vehicle_owner.foto1_dui = foto1_dui
+        if foto2_dui:
+            vehicle_owner.foto2_dui = foto2_dui
+        if foto_licencia:
+            vehicle_owner.foto_licencia = foto_licencia
+
+        vehicle_owner.save()
 
         return redirect('dashboard')  # Redirige al panel de control
 
