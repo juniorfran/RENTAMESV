@@ -10,13 +10,13 @@ from django.views.generic.edit import CreateView
 
 # Create your views here.
 
+
 @login_required
 def vehicle_list(request):
-    vehicles = Vehicle.objects.all()
+    vehicles = Vehicle.objects.order_by('-id')  # Ordena la lista de vehículos por fecha de creación en orden descendente
     vehicle_types = VehicleType.objects.all()
     locations = Location.objects.all()
     
-    vehicles = Vehicle.objects.all()
     paginator = Paginator(vehicles, 10)  # Configurar el paginador con 10 elementos por página
     page = request.GET.get('page')
     
@@ -28,9 +28,6 @@ def vehicle_list(request):
     except EmptyPage:
         # Si la página está fuera de rango (por encima del número máximo de páginas), mostrar la última página.
         vehicles = paginator.page(paginator.num_pages)
-
-        
-    print(paginator)
     
     context = {
         'vehicles': vehicles,

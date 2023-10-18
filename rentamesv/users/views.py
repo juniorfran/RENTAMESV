@@ -50,12 +50,12 @@ def register_view(request):
         # Validar que las contraseñas coincidan
         if password != confirm_password:
             messages.error(request, 'Las contraseñas no coinciden.')
-            return redirect('home')
+            return redirect('register')
 
         # Verificar si el usuario ya existe
         if User.objects.filter(username=username).exists():
             messages.error(request, 'El nombre de usuario ya está en uso.')
-            return redirect('home')
+            return redirect('register')
 
         # Crear el nuevo usuario
         user = User.objects.create_user(
@@ -68,7 +68,7 @@ def register_view(request):
         user.save()
 
         messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-        return redirect('home')
+        return redirect('login')
 
     return render(request, 'users/register.html')
 
@@ -120,7 +120,7 @@ def login_view(request):
             return redirect('crear_perfil')
         else:
             messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
-            return redirect('home')
+            return redirect('login')
 
     return render(request, 'users/login.html')
 
