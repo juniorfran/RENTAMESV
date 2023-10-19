@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-_0e!is#@uo$15*0=yl)%a#!$dpn(yr$8ma!qus-dsfkqw2(^xl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['marciano503.pythonanywhere.com']
 
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'users.User'
