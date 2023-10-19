@@ -46,6 +46,8 @@ def register_view(request):
         email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
+        is_owner = request.POST['is_owner']
+        is_owner = is_owner == 'on' 
 
         # Validar que las contraseñas coincidan
         if password != confirm_password:
@@ -65,7 +67,13 @@ def register_view(request):
             email=email,
             password=password
         )
+        user.is_owner = is_owner
         user.save()
+        
+        # Redirigir al usuario al formulario de llenado de campos de VehicleOwner si es propietario
+        if is_owner:
+            return redirect('login')  # Cambia a la vista que muestra el formulario de VehicleOwner
+
 
         messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
         return redirect('login')
@@ -101,10 +109,17 @@ def crear_perfil(request):
         if imagen:
             perfil_usuario.imagen = imagen
         perfil_usuario.save()
+        
+        # Verificar si el usuario es propietario
+        is_owner = user.is_owner
 
-        # Redirecciona a la página de perfil del usuario
-        return redirect('perfil')
-
+        if is_owner:
+            # El usuario es propietario, redirigir a llenar los datos de VehicleOwner
+            return redirect('become_owner')
+        else:
+            # El usuario no es propietario, redirigir al perfil
+            return redirect('perfil')
+        
     return render(request, 'perfil/crear_perfil.html')
 
 
@@ -137,13 +152,32 @@ def logout_view(request):
         
 @login_required
 def become_owner(request):
-    if request.method == 'POST':
-        user_profile = UserProfile.objects.get(user=request.user)
-        user_profile.is_owner = True
-        user_profile.save()
-        return redirect('complete_verification')  # Redirige a la página de verificación
+    if request.method == "POST":
+        # Obtener el usuario actual
+        user = request.user
 
-    return render(request, 'owner/become_owner.html')
+        # Verificar si el usuario ya es propietario
+        if not user.vehicle_owner_profile:
+            # Si no es propietario, crea un perfil de propietario y asigna los valores
+            owner = VehicleOwner(
+                user=user,
+                id_document=request.POST.get('id_document'),
+                emergency_contact=request.POST.get('emergency_contact'),
+                rental_price_hourly=request.POST.get('rental_price_hourly'),
+                rental_price_daily=request.POST.get('rental_price_daily'),
+                availability_hours=request.POST.get('availability_hours'),
+                rental_conditions=request.POST.get('rental_conditions')
+            )
+            # Maneja la carga de archivos para las fotos aquí, por ejemplo:
+            owner.foto1_dui = request.FILES['foto1_dui']
+            owner.foto2_dui = request.FILES['foto2_dui']
+            owner.foto_licencia = request.FILES['foto_licencia']
+
+            owner.save()
+
+            return redirect('create_user_vehicle')  # Redirige a la página de inicio del propietario
+
+    return render(request, 'become_owner.html')
 
 
 # Vista para completar la información de verificación
@@ -184,7 +218,7 @@ def complete_verification(request):
 
         vehicle_owner.save()
 
-        return redirect('dashboard')  # Redirige al panel de control
+        return redirect('create_user_vehicle')  # Redirige al panel de control
 
     return render(request, 'owner/complete_verification.html')
 

@@ -53,7 +53,7 @@
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Puertas</span>
                                 <select class="form-select form-control" aria-label="Selecciona tipo de Puerta" name="puertas" id="puertas">
-                                    <option selected>Selecciona una opcion</option>
+                                    <option selected>--Opciones--</option>
                                     <option value="dos con Baul">Dos con Baul</option>
                                     <option value="cuatro con Baul">Cuatro con Baul</option>
                                     <option value="cinco puertas">Cinco Puertas</option>
@@ -64,7 +64,7 @@
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Transmision</span>
                                 <select class="form-select form-control" aria-label="Selecciona el tipo de Transmision" name="transmision" id="transmision">
-                                    <option selected>Selecciona una opcion</option>
+                                    <option selected>--Opciones--</option>
                                     <option value="automatico">Automatico</option>
                                     <option value="estandar">Estandar</option>
                                     <option value="otros">Otros</option>
@@ -81,7 +81,7 @@
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Imagen</span>
                                 <select class="form-select" aria-label="Selecciona el tipo de Transmision" name="combustible" id="combustible">
-                                    <option selected>Selecciona una opcion</option>
+                                    <option selected>--Opciones--</option>
                                     <option value="gasolina superior">Gasolina Superior</option>
                                     <option value="gasolina regular">Gasolina Estandar</option>
                                     <option value="diesel">Diesel</option>
@@ -97,8 +97,8 @@
                         <div class="row g-3 mb-3">
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Hubicacion</span>
-                                <select class="form-select form-control" id="location" name="location" required>
-                                    <option value="">Selecciona una ubicación</option>
+                                <select class="form-select form-control" id="ubicacion" name="ubicacion" required>
+                                    <option value="">--Ubicaciones--</option>
                                     {% for location in locations %}
                                         <option value="{{ location.id }}">{{ location.name }}</option>
                                     {% endfor %}
@@ -107,7 +107,7 @@
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Tipo</span>
                                 <select class="form-select form-control" id="tipo_vehiculo" name="tipo_vehiculo" required>
-                                    <option value="">Selecciona un tipo de vehículo</option>
+                                    <option value="">--Tipos--</option>
                                     {% for vehicle_type in vehicle_types %}
                                         <option value="{{ vehicle_type.id }}">{{ vehicle_type.name }}</option>
                                     {% endfor %}
@@ -164,6 +164,17 @@
     </div>
 </div>
 
-
+<script>
+    // Escucha el cambio en la casilla de verificación
+    document.getElementById('is_owner_checkbox').addEventListener('change', function() {
+      if (this.checked) {
+        // Si se marca la casilla, actualiza el valor del campo oculto a "true"
+        document.querySelector('input[name="is_owner"]').value = "true";
+      } else {
+        // Si se desmarca la casilla, actualiza el valor del campo oculto a "false"
+        document.querySelector('input[name="is_owner"]').value = "false";
+      }
+    });
+  </script>
 
 {% endblock content %}
