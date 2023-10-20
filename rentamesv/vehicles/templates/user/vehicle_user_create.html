@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Crear Vehículo</div>
                 <div class="card-body form-inline">
@@ -52,18 +53,18 @@
                         <div class="row g-3 mb-3">
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Puertas</span>
-                                <select class="form-select form-control" aria-label="Selecciona tipo de Puerta" name="puertas" id="puertas">
+                                <select class="form-select" aria-label="Selecciona tipo de Puerta" name="puertas" id="puertas">
                                     <option selected>--Opciones--</option>
-                                    <option value="dos con Baul">Dos con Baul</option>
-                                    <option value="cuatro con Baul">Cuatro con Baul</option>
-                                    <option value="cinco puertas">Cinco Puertas</option>
-                                    <option value="tres Puertas">Tres Puertas</option>
-                                    <option value="puerta corrediza">Puerta Corrediza</option>
+                                    <option value="2">Dos con Baul</option>
+                                    <option value="3">Tres Puertas</option>
+                                    <option value="4">Cuatro con Baul</option>
+                                    <option value="5">Cinco Puertas</option>
+                                    <option value="Corrediza">Puerta Corrediza</option>
                                   </select>
                             </div>
                             <div class="col input-group">
                                 <span class="input-group-text" id="basic-addon1">Transmision</span>
-                                <select class="form-select form-control" aria-label="Selecciona el tipo de Transmision" name="transmision" id="transmision">
+                                <select class="form-select" aria-label="Selecciona el tipo de Transmision" name="transmision" id="transmision">
                                     <option selected>--Opciones--</option>
                                     <option value="automatico">Automatico</option>
                                     <option value="estandar">Estandar</option>
@@ -79,7 +80,7 @@
                                 <input type="text" class="form-control" id="cilindraje" name="cilindraje" required>
                             </div>
                             <div class="col input-group">
-                                <span class="input-group-text" id="basic-addon1">Imagen</span>
+                                <span class="input-group-text" id="basic-addon1">Combustible</span>
                                 <select class="form-select" aria-label="Selecciona el tipo de Transmision" name="combustible" id="combustible">
                                     <option selected>--Opciones--</option>
                                     <option value="gasolina superior">Gasolina Superior</option>
@@ -144,20 +145,26 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción del vehículo</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                        <div class="row g-3 mb-3">
+                            <div class="col input-group">
+                                <label for="descripcion" class="form-label">Descripción del vehículo</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Imagen</label>
-                            <input type="file" name="imagenes[]" id="imagenes" multiple required>
+                        <div class="row  mb-3">
+                            <div class="col input-group">
+                                <label for="formFileLg" class="form-label">Imagen</label>
+                                <input type="file" class="form-control form-control-lg" name="imagenes[]" id="imagenes" multiple required >
+                            </div>
                         </div>
 
-                        <button type="submit" id="crear-vehiculo-btn" class="btn btn-primary">Guardar Vehículo</button>
-                    </form>
-
-                    
+                        <div class="row g-3 mb-3">
+                            <div class="col input-group">
+                                <button type="submit" id="crear-vehiculo-btn" class="btn btn-primary">Guardar Vehículo</button>
+                            </div>
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>

@@ -97,11 +97,11 @@ def crear_vehiculo(request):
                 # Procesa las imágenes
                 imagenes = request.FILES.getlist('imagenes[]')
                 for imagen in imagenes:
-                    imagen_obj = Imagen(image=imagen)
+                    imagen_obj = Imagen(image=imagen, user=request.user)
                     imagen_obj.save()
                     vehicle.image.add(imagen_obj)
-
-                return redirect('vehicle_user_list')
+                    
+                return redirect('vehicle_list')
             
             except VehicleType.DoesNotExist:
                 # Si no se encontró un VehicleType correspondiente, muestra un mensaje de error

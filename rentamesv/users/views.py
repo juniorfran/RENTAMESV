@@ -157,7 +157,7 @@ def become_owner(request):
         user = request.user
 
         # Verificar si el usuario ya es propietario
-        if not user.vehicle_owner_profile:
+        if user.is_owner == True:
             # Si no es propietario, crea un perfil de propietario y asigna los valores
             owner = VehicleOwner(
                 user=user,
@@ -177,7 +177,7 @@ def become_owner(request):
 
             return redirect('create_user_vehicle')  # Redirige a la página de inicio del propietario
 
-    return render(request, 'become_owner.html')
+    return render(request, 'owner/become_owner.html')
 
 
 # Vista para completar la información de verificación
