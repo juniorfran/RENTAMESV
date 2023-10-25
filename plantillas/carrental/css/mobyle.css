@@ -1,0 +1,158 @@
+@media (max-width: 1199px) {
+    .product-item .product-title {
+        padding: 15px;
+        text-align: center;
+        background: #de7009;
+        transition: all .3s;
+        height: 100px;
+    }
+    .single-menu .category-title {
+        padding: 15px;
+        text-align: center;
+        transition: all .3s;
+        height: 90px;
+    }
+}
+@media (max-width: 930px) {
+    .topbar {
+        display: none;
+    }
+    .navbar-brand h1 {
+        font-family: "Oswald",sans-serif;
+        line-height: 1.2;
+        padding: 10px 0;
+        font-size: 2.0rem;
+    }
+    .top-bar {
+        display: none;
+    }
+    .display-4 {
+        font-size: calc(1.175rem + 0.5vw);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show>.nav-link {
+        color: #fff;
+        border-bottom: 2px #de7009 solid;
+        height: 40px;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        padding: 30px 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        transition: .5s;
+        border-bottom: 2px #de7009 solid;
+        height: 40px;
+    }
+    #header {
+        position: relative;
+        left: 0;
+        right: 0;
+        transition: all 0.5s;
+        z-index: 997;
+        height: auto;
+        top: 0;
+    }
+    .footer-container-right {
+        margin: -50px 0;
+        background-color: #de7009 !important;
+        padding: 123px 0 50px 50px;
+    }
+    
+}
+
+@media (max-width: 570px) {
+    .blog-item {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 470px) {
+    .category .section-header {
+        margin-bottom: 30px;
+        padding: 20px 30px 15px 2px;
+        color: #362419;
+        background: #fff;
+    }
+    .category .slick-next {
+        right: 15px;
+        margin-top: 9px;
+    }
+    .category .slick-prev {
+        left: calc(100% - 84px);
+        margin-top: 9px;
+    }
+    .product .slick-next {
+        right: 12px;
+    }
+    .product .slick-prev {
+        left: calc(100% - 79px);
+    }
+    .call-to-action h1 {
+        color: #ffffff;
+        font-size: 30px;
+        margin: 0;
+        text-align: center;
+    }
+    .call-to-action .col-md-6:last-child {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .product-detail .nav.nav-pills .nav-link:hover, .product-detail .nav.nav-pills .nav-link.active {
+        color: #000;
+        background: #de7009;
+        padding: 20px 90px;
+    }
+    .product-detail .nav.nav-pills .nav-link {
+        color: #F195B2;
+        background: #000;
+        border-radius: 0;
+        transition: all .3s;
+        padding: 20px 90px;
+    }
+    .bottom-bar .user {
+        font-size: 0;
+        text-align: center;
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
+}
+
+@media (max-width: 330px) {
+    .product .section-header h2 {
+        font-size: 1.3rem;
+    }
+    .h1, h1 {
+        font-size: calc(1.375rem + -0.5vw);
+    }
+    .product .section-header {
+        margin-bottom: 30px;
+        padding: 20px 30px 15px 2px;
+        color: #362419;
+        background: #fff;
+    }
+    .product .slick-prev, .product .slick-next {
+        top: -65px;
+        width: 30px;
+        height: 30px;
+        z-index: 1;
+        transition: .5s;
+        color: #362419;
+        background: #ffffff;
+        border: 1px solid #362419;
+        border-radius: 4px;
+    }
+    .display-4 {
+        font-size: calc(1.475rem + -0.3vw);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .navbar-brand h1 {
+        font-family: "Oswald",sans-serif;
+        line-height: 1.2;
+        padding: 10px 0;
+        font-size: 1.6rem;
+    }
+}
