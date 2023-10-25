@@ -6,139 +6,82 @@
 
 {% block content %}
 
-{% comment %} <div class="container mt-4">
-  <h1>Lista de Vehículos</h1>
-  
-  <!-- Lista de vehículos -->
+<title>{% block name_tab %}Lista de Vehiculos{% endblock %}</title>
 
-  <div class="row">
-    {% for vehicle in vehicles %}
-    <div class="col-md-6 col-lg-4 mb-4">
-      <div class="listing d-block  align-items-stretch">
-        <div class="listing-img h-100 mr-4">
-            {% if vehicle.image.all %}
-                <img src="{{ vehicle.image.first.image.url }}" class="card-img-top img-fluid" alt="{{ vehicle.make }} {{ vehicle.model }}">
-            {% else %}
-                <!-- Agregar una imagen de marcador de posición o mensaje si no hay imágenes relacionadas -->
-                <img src="{% static "plantilla/images/vintage-car-png.webp" %}" class="card-img-top img-fluid">
-            {% endif %}
-        </div>
-        <div class="listing-contents h-100">
-          <h3>{{ vehicle.make }} {{ vehicle.model }}</h3>
-          <div class="rent-price">
-            <i class=" color_icono bi bi-currency-dollar"></i>
-            <strong>{{ vehicle.price_daily }}</strong><span class="mx-1">/</span>day
-          </div>
-          <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-            <div class="listing-feature pr-4">
-              <span class="caption"><i class=" color_icono bi bi-palette"></i></span>
-              <span class="number">{{ vehicle.color }}</span>
-            </div>
-            <div class="listing-feature pr-4">
-              <span class="caption"><i class="color_icono bi bi-door-open"></i></span>
-              <span class="number">{{ vehicle.puertas }}</span>
-            </div>
-            <div class="listing-feature pr-4">
-              <span class="caption"><i class="color_icono bi bi-person"></i> </span>
-              <span class="number">{{ vehicle.capacidad }}</span>
-            </div>
-            <div class="listing-feature pr-4">
-                <span class="caption"><i class="color_icono bi bi-gear-wide"></i></i> </span>
-                <span class="number">{{ vehicle.motor }}</span>
-            </div>
-          </div>
-          <div>
-            <p>{{ vehicle.description }}</p>
-            <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-          </div>
-        </div>
+<head>
+  <style>
+      .car-rent-item {
+          height: 100%; /* Establece la altura fija al 100% del contenedor */
+      }
+  </style>
+</head>
 
-      </div>
-    </div>
-    {% endfor %}
-</div>
-  
-  
-</div> {% endcomment %}
+        <!-- Car Fleet Start -->
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Agrega cualquier script adicional que necesites -->
-
-   
-    <div class="site-wrap" id="home-section">
-
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
-
-
-    <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h2 class="section-heading"><strong>Car Listings</strong></h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>    
-          </div>
-        </div>
-        
-
-        <div class="row">
-            {% for vehicle in vehicles %}
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-                <div class="listing-img h-100 mr-4">
-                    {% if vehicle.image.all %}
-                        <img src="{{ vehicle.image.first.image.url }}" class="card-img-top img-fluid" alt="{{ vehicle.make }} {{ vehicle.model }}">
-                    {% else %}
-                        <!-- Agregar una imagen de marcador de posición o mensaje si no hay imágenes relacionadas -->
-                        <img src="{% static "plantilla/images/vintage-car-png.webp" %}" class="card-img-top img-fluid">
-                    {% endif %}
-                </div>
-              <div class="listing-contents h-100">
-                <h3>{{ vehicle.make }} {{ vehicle.model }}</h3>
-                <div class="rent-price">
-                  <i class=" color_icono bi bi-currency-dollar"></i>
-                  <strong>{{ vehicle.price_daily }}</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption"><i class=" color_icono bi bi-palette"></i></span>
-                    <span class="number">{{ vehicle.color }}</span>
+              <div class="car-container">
+                  <div class="row">
+                      {% for vehicle in vehicles %}
+                          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                              <div class="car-rent-item d-flex flex-column align-items-end">
+                                  <h4>{{ vehicle.make }} {{ vehicle.modelo }}</h4>
+                                  <div class="listing-img mr-4">
+                                      {% if vehicle.image.all %}
+                                          <img src="{{ vehicle.image.first.image.url }}" class="card-img-top img-fluid" alt="{{ vehicle.make }} {{ vehicle.model }}">
+                                      {% else %}
+                                          <!-- Agregar una imagen de marcador de posición o mensaje si no hay imágenes relacionadas -->
+                                          <img src="{% static "image/vintage-car-png.webp" %}" class="card-img-top img-fluid">
+                                      {% endif %}
+                                  </div>
+                                  <div class="car-rent-item-info align-items-center">
+                                      <div class="row align-items-center">
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-car text-primary"></i>
+                                              <span class="description-title">Transmisión: </span> {{ vehicle.transmision }}
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-road text-primary"></i>
+                                              <span class="description-title">Kilometraje: </span> {{ vehicle.kilometraje }} km.
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-cogs text-primary"></i>
+                                              <span class="description-title">Motor: </span> {{ vehicle.motor }}
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-bar-chart text-primary"></i>
+                                              <span class="description-title">Climatización: </span> A / C
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-car-alt text-primary"></i>
+                                              <span class="description-title">Tipo: </span> Hatchback
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-users text-primary"></i>
+                                              <span class="description-title">Capacidad: </span> {{ vehicle.capacidad }}
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-suitcase text-primary"></i>
+                                              <span class="description-title">Equipaje: </span> 3
+                                          </div>
+                                          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                              <i class="fa fa-car-side text-primary"></i>
+                                              <span class="description-title">Puertas: </span> {{ vehicle.puertas }}
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="d-grid gap-2">
+                                <a class="btn btn-primary px-3 ml-auto" href="car-detail.html">{{ vehicle.price_daily }}/Día</a>
+                              </div>
+                          </div>
+                      {% endfor %}
                   </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption"><i class="color_icono bi bi-door-open"></i></span>
-                    <span class="number">{{ vehicle.puertas }}</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption"><i class="color_icono bi bi-person"></i> </span>
-                    <span class="number">{{ vehicle.capacidad }}</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                      <span class="caption"><i class="color_icono bi bi-gear-wide"></i></i> </span>
-                      <span class="number">{{ vehicle.motor }}</span>
-                  </div>
-                </div>
-                <div>
-                  <p>{{ vehicle.description }}</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Reservar</a></p>
-                </div>
               </div>
+          </div>
+          </div>
+      </div>            
+      <!-- Car Fleet End -->
 
-            </div>
-          </div>        
-          {% endfor %}
-          
-        </div>
-      </div>
-    </div>
-      
-    </div>
+
 
     <!-- Paginación (si es necesario) -->
   <!-- Paginación -->
@@ -178,5 +121,8 @@
     </ul>
     </nav>
 
+    {% endblock %}
 
-{% endblock %}
+
+
+

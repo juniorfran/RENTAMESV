@@ -1,133 +1,114 @@
-{% load static %}
-      <!-- header -->
-      <header>
-        <!-- header inner -->
-        <div class="header">
+     {% load static %}
+     <!-- Topbar Start -->
+     <div class="topbar">
+       <div class="container-fluid">
            <div class="container">
-              <div class="row">
-                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                    <div class="full">
-                       <div class="center-desk">
-                          <div class="logo">
-                             <a href="{% url "home" %}"><img width="60" src="{% static "carrentals/images/logotipo.png" %} " alt="#" /></a>
-                          </div>
+               <div class="row">
+                   <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                       <div class="topbar-left">
+                           <a><i class="fa fa-phone-alt"></i>+503 2222-0522</a>
+                           <span class="text-body">|</span>
+                           <a><i class="fa fa-envelope mr-2"></i>contacto@rentamesv.com</a>
                        </div>
-                    </div>
-                 </div>
-                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                       <span class="navbar-toggler-icon"></span>
-                       </button>
-                       <div class="collapse navbar-collapse" id="navbarsExample04">
-                          
-                          {% if user.is_authenticated %}
-
-                          <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                               <a class="nav-link" href="{% url "home" %}"> Inicio  </a>
-                            </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="{% url "vehicle_list" %}">Autos</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="{% url "perfil" %}">Perfil</a>
-                           </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="#">Mensajes</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#">Ajustes</a>
-                           </li>
-                         </ul>
-                            <form method="post" action="{% url 'logout' %}">
-                              {% csrf_token %}
-                              <div class="sign_btn">
-                                <button class="btn btn-warning" type="submit">Cerrar sesión</button>
-                              </div>
-                            </form>
-                            {% else %}
-                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{% url "home" %}"> Inicio  </a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#">Nosotros</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#">Autos</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#">Contactanos</a>
-                              </li>
-                           </ul>
-                            <div class="sign_btn"><a href="{% url "login" %}">Iniciar sesion</a></div>
-                            {% endif %}
-
+                   </div>
+                   <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                       <div class="topbar-right">
+                           <a class="px-3" href="#">
+                               <i class="fab fa-facebook-f"></i>
+                           </a>
+                           <a class="px-3" href="#">
+                               <i class="fab fa-twitter"></i>
+                           </a>
+                           <a class="px-3" href="#">
+                               <i class="fab fa-linkedin-in"></i>
+                           </a>
+                           <a class="px-3" href="#">
+                               <i class="fab fa-instagram"></i>
+                           </a>
+                           <a class="pl-3" href="#">
+                               <i class="fab fa-youtube"></i>
+                           </a>
                        </div>
-                    </nav>
-                 </div>
-              </div>
+                   </div>
+               </div>
            </div>
-        </div>
-     </header>
-  <!-- end header inner -->
-<!-- end header -->
-{% comment %} <link rel="stylesheet" href="{% static 'assets/css/users_tab.css' %}" />
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url "home" %}">RENTAME SV</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-md-auto gap-2">
-        <li class="nav-item rounded">
-          {% if user.is_authenticated %}
-            <a class="nav-link active" aria-current="page" href="{% url "vehicle_list" %}"><i class="bi bi-house-fill me-2"></i>Rentar un Auto</a>
-            {% else %}
-            <a class="nav-link active" class="bi bi-house-fill me-2" aria-current="page" href="#" data-bs-target="#modal-1" data-bs-toggle="modal"></i>Rentar un Auto</a>
-          {% endif %}
-        </li>
-        <li class="nav-item rounded">
-          <a class="nav-link" href="#"><i class="bi bi-people-fill me-2"></i>Informacion</a>
-        </li>
-        <li class="nav-item rounded">
-          <a class="nav-link" href="#"><i class="bi bi-telephone-fill me-2"></i>Contactar</a>
-        </li>
-        
-        <li class="nav-item dropdown rounded ">
-          
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-2"></i>Perfil</a>
-          <ul class="dropdown-menu w-150px px-3 mx-1 gx-5 dropdown-menu-end" aria-labelledby="navbarDropdown">
-            
-            {% if user.is_authenticated %}
-            <div class="user-info">
-              <h5 class="name">{{ user.first_name }}</h5>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li>
-                <a class="dropdown-item p-2 m-1 ui btn normal" href="{% url "perfil" %}">Mi Perfil</a>
-              </li>
-            </div>
-              <li>
-                <a class="dropdown-item p-2 m-1 ui btn normal" href="#">Configuracion de cuenta</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <li><button class="dropdown-item p-2 m-1 ui" type="submit">Cerrar sesión</button></li>
-              </form>
-              {% else %}
-              <a class="dropdown-item p-2 m-1 ui btn normal" href="#" data-bs-target="#modal-1" data-bs-toggle="modal">Registrarse</a>
-              <a class="dropdown-item p-2 m-1 ui btn normal" href="#" data-bs-target="#modal-2" data-bs-toggle="modal">Iniciar Sesión</a>
-              {% endif %}
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> {% endcomment %}
+       </div>
+   </div>
+   <!-- Topbar End -->
+
+   <!-- Navbar Start -->
+   <div class="container-fluid position-relative  nav-bar">
+       <div class="position-relative px-lg-5" style="z-index: 9;">
+           <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+               <div class="container">
+                   <a href="{% url "home" %}">
+                       <img src="{% static "image/logotipo.png" %} "  alt="football" height="70">
+                   </a>
+                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                       <span class="navbar-toggler-icon"></span>
+                   </button>
+                   <div class="collapse navbar-collapse" id="navbarCollapse">
+                       <ul class="navbar-nav mx-auto py-0">
+                           <li><a href="{% url "home" %}" class="nav-item nav-link active">Inicio</a></li>
+                           <li><a href="#" class="nav-item nav-link">Nosotros</a></li>
+                           <li><a href="{% url "vehicle_list" %}" class="nav-item nav-link">Autos</a></li>
+                           <li class="nav-item dropdown">
+                               <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">Tipos</a>
+                               <ul class="dropdown-menu">
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Economicos</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Compactos</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Tamaño Grande</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Mejor Estado</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Minivans</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">SUV</a>
+                                   </li>
+                                   {% comment %} <li class="dropdown-submenu">
+                                       <a href="category.html" class="dropdown-item">Luxury</a>
+                                   </li> {% endcomment %}
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">Electricos</a>
+                                   </li>
+                                   <li class="dropdown-submenu">
+                                       <a href="#" class="dropdown-item">De Carga</a>
+                                   </li>
+                               </ul>
+                           </li>
+                           <li><a href="#" class="nav-item nav-link">Servicios</a></li>
+                           <li><a href="#" class="nav-item nav-link">Contactanos</a></li>
+                           {% if user.is_authenticated %}
+                           {% comment %} <li class="nav-item dropdown">
+                               <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle nav-item nav-link">Perfil</a>
+                               <ul class="dropdown-menu">
+                                   <li><a href="{% url "perfil" %}" class="dropdown-item">Mi Perfil</a></li>
+                                   <li><a href="#" class="dropdown-item">Mis Autos</a></li>
+                                   <li>
+                                   <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <div class="sign_btn">
+                                      <button class="dropdown-item" type="submit">Cerrar sesión</button>
+                                    </div>
+                                  </form>
+                                </li>
+                               </ul>
+                           </li> {% endcomment %}
+                           {% else %}
+                          <li><a href="{%  url "login" %}" class="nav-item nav-link active">Iniciar Sesion</a></li>
+                           {% endif %}
+                       </ul>
+                   </div>
+               </div>
+           </nav>
+       </div>
+   </div>
+   <!-- Navbar End -->

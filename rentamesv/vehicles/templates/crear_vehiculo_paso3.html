@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Paso 3: Configuración final</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="tipo_vehiculo">Tipo de vehículo:</label>
+            <select class="form-control" name="tipo_vehiculo">
+                {% for tipo in vehicle_types %}
+                    <option value="{{ tipo.id }}">{{ tipo.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ubicacion">Ubicación:</label>
+            <select class="form-control" name="ubicacion">
+                {% for location in locations %}
+                    <option value="{{ location.id }}">{{ location.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="imagenes[]">Subir imágenes (múltiples):</label>
+            <input type="file" class="form-control-file" name="imagenes[]" multiple>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Vehículo</button>
+    </form>
+</div>
+
+{% endblock content %}

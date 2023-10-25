@@ -4,12 +4,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/perfil_usuario.css' %}" />
 
-<section class="h-100 gradient-custom-2">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-9 col-xl-7">
           <div class="card">
             <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
@@ -60,10 +55,14 @@
                {% if user.is_owner %}
                 {# El usuario es propietario, muestra el botón para registrar un vehículo #}
                 <p class="mb-0">
-                  <button id="crear-vehiculo-btn" class="btn btn-primary">
-                    <a href="{% url "create_user_vehicle" %}">Crear Vehículo</a>
-                  </button>
+                  <button id="crear-vehiculo" class="btn btn-primary">Crear Vehiculo</button>
                 </p>
+                <script>
+                  document.getElementById('crear-vehiculo').onclick = function() {
+                    // Reemplaza 'TU_URL_AQUI' con la URL a la que deseas redirigir
+                    window.location.href = '{% url "crear_vehiculo_paso1" %}';
+                  };
+                  </script>
               {% else %}
                 {# El usuario no es propietario, muestra un enlace que redirige a la vista de create_vehicle_or_modal #}
                 <p class="mb-0">
@@ -98,7 +97,6 @@
         </div>
       </div>
     </div>
-  </section>
 
   <!-- Modal -->
   <div class="modal fade text-start" role="dialog" tabindex="-1" data-aos="flip-left" data-aos-once="true" id="modal-1">

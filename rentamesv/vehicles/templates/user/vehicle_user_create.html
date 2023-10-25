@@ -3,7 +3,144 @@
 
 {% block content %}
 
-<div class="container mt-2">
+
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-7">
+      <div class="row g-0 align-items-center">
+        
+        <div class="col-10 mb-5 mb-lg-0" style="
+        z-index: 2;
+        ">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body pr-2  shadow-5 text-center">
+              <h2 class="fw-bold mb-5">Registrar un Vehiculo</h2>
+  
+              <form style="padding-bottom: 0px; margin-bottom: 25px" method="post">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    Por favor, corrige los siguientes errores:
+                    <ul>
+                        {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                        <li>{{ field }}: {{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- 2 column grid layout with text inputs for the MARCA and MODELO -->
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="marca" name="marca" class="form-control border border-primary-subtle" required/>
+                        <label class="form-label" for="form3Example1">Marca</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="modelo" name="modelo" class="form-control border border-primary-subtle" required/>
+                        <label class="form-label" for="form3Example2">Modelo</label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <!-- 2 column grid layout with text inputs for the ANO and COLOR -->
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="anio" name="anio" class="form-control border border-primary-subtle" required/>
+                        <label class="form-label" for="form3Example1">Año</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="color" name="color" class="form-control border border-primary-subtle" required/>
+                        <label class="form-label" for="form3Example2">Color</label>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="first_name" name="first_name" class="form-control border border-primary-subtle" />
+                      <label class="form-label" for="form3Example1">Nombres</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="last_name" name="last_name" class="form-control border border-primary-subtle" />
+                      <label class="form-label" for="form3Example2">Apellidos</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" name="email" class="form-control border border-primary-subtle" />
+                  <label class="form-label" for="form3Example3">Direccion de correo</label>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="password" name="password" class="form-control border border-primary-subtle" />
+                  <label class="form-label" for="form3Example4">Contraseña</label>
+                </div>
+  
+                <!-- Confirm Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="confirm_password" name="confirm_password" class="form-control border border-primary-subtle" />
+                  <label class="form-label" for="form3Example4">Confirmar Contraseña</label>
+                </div>
+  
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                  <label class="form-check-label pr-2" for="form2Example33">
+                    Vas a alquilar tu auto?
+                  </label>
+                  <input class="form-check form-switch" type="checkbox" name="is_owner" id="is_owner" />
+                </div>
+  
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Registrar
+                </button>
+  
+               
+              </form>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+
+{% comment %} <div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -169,7 +306,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
 
 <script>
     // Escucha el cambio en la casilla de verificación

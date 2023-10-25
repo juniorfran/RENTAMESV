@@ -1,0 +1,61 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 25.03.2022 г., 14:53:10 ч.
+    Author     : svetlana
+*/
+
+body {
+    background-color: #fff;
+    
+}
+
+.tekstint {
+    background-color: #dfdfdf;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 50px;
+}
+h5 {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.insttitle {
+    color: #203056;
+    font-size: 34px;
+    line-height: 1.47;
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+.instinfo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.instbotomtitle {
+    margin-left: 10px;
+    font-size: 24px;
+    line-height: 1.66;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: #B35047;
+}
+.instbotominfo h6 {
+    font-weight: 400;
+    font-size: 15px;
+}
+.imgff {
+    width: 100%;
+    margin-top: 50px;
+}
+.ffinfo {
+    margin: 72px 20px 20px 20px;
+}
+.ffinfo h6 {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+}

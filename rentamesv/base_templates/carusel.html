@@ -1,36 +1,52 @@
 {% load static %}
 
-<!-- car -->
-<div  class="car">
-  <div class="container">
-     <div class="row">
-        <div class="col-md-12">
-           <div class="titlepage">
-              <h2> Para todos los gustos </h2>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</span>
+<!-- Main Slider Start -->
+<div class="ful-slider">
+   <div class="container-fluid">
+       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+           <div class="carousel-inner">
+               <div class="carousel-item active">
+                   <img src="{% static "image/slider/slider1.png" %}" class="d-block w-100" alt="Ice Cream">
+                   <div class="carousel-caption d-none d-md-block">
+                       <h5>Rent A Car</h5>
+                       <p>Luxury Van Rental Services - SUV Rental</p>
+                       <a href="booking.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserve Now</a>
+                   </div>
+               </div>
+               <div class="carousel-item">
+                   <img src="{% static "image/slider/slider2.png" %}" class="d-block w-100" alt="Ice Cream">
+                   <div class="carousel-caption d-none d-md-block">
+                       <h5>Rent A Car</h5>
+                       <p>24 X 7 Airport Pickup</p>
+                       <a href="booking.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserve Now</a>
+                   </div>
+               </div>
+               <div class="carousel-item">
+                   <img src="{% static "image/slider/slider3.png" %}" class="d-block w-100" alt="Cake Shop">
+                   <div class="carousel-caption d-none d-md-block">
+                       <h5>Rent A Car</h5>
+                       <p>8, 9, 10, 12 & 15 Passenger Van Rental</p>
+                       <a href="booking.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserve Now</a>
+                   </div>
+               </div>
+               <div class="carousel-item">
+                   <img src="{% static "image/slider/slider4.png" %}" class="d-block w-100" alt="Cake">
+                   <div class="carousel-caption d-none d-md-block">
+                       <h5>Rent A Car</h5>
+                       <p>Luxury Car Rental</p>
+                       <a href="booking.html" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserve Now</a>
+                   </div>
+               </div>
            </div>
-        </div>
-     </div>
-     <div class="row">
-        <div class="col-md-4 padding_leri">
-           <div class="car_box">
-              <figure><img src="{% static "carrentals/images/car_img1.png" %}" alt="#"/></figure>
-              <h3>Hundai</h3>
-           </div>
-        </div>
-        <div class="col-md-4 padding_leri">
-           <div class="car_box">
-              <figure><img src="{% static "carrentals/images/car_img2.png" %}" alt="#"/></figure>
-              <h3>Audi</h3>
-           </div>
-        </div>
-        <div class="col-md-4 padding_leri">
-           <div class="car_box">
-              <figure><img src="{% static "carrentals/images/car_img3.png" %}" alt="#"/></figure>
-              <h3>BMW x5</h3>
-           </div>
-        </div>
-     </div>
-  </div>
+           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Previous</span>
+           </button>
+           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Next</span>
+           </button>
+       </div>
+   </div>
 </div>
-<!-- end car -->
+<!-- Main Slider End -->

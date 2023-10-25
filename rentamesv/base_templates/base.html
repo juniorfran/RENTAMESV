@@ -22,172 +22,110 @@
      <meta name="description" content="">
      <meta name="author" content="">
 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
      <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
-    rel="stylesheet"
-    />
-
-     <!-- RENTO STATIC -->
-     <!-- bootstrap css -->
-     <link rel="stylesheet" href="{% static "rento/css/bootstrap.min.css" %}">
-     <!-- style css -->
-     <link rel="stylesheet" href="{% static "rento/css/style.css" %}">
-     <!-- Responsive-->
-     
-     <link rel="stylesheet" href="{% static "rento/css/responsive.css" %}">
-     <!-- fevicon -->
-     <link rel="icon" href="{% static "rento/images/fevicon.png" %}" type="image/gif" />
-     <!-- Scrollbar Custom CSS -->
-     <link rel="stylesheet" href="{% static "rento/css/jquery.mCustomScrollbar.min.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
      <!-- Tweaks for older IEs-->
-     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-     <!--[if lt IE 9]>
-     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
 
-     <!-- CARRENTALS STATIC -->
-     <link rel="stylesheet" href="{% static "carrentals/css/bootstrap-datepicker.css" %}">
-     <link rel="stylesheet" href="{% static "carrentals/css/jquery.fancybox.min.css" %}">
-     <link rel="stylesheet" href="{% static "carrentals/css/owl.carousel.min.css" %}">
-     <link rel="stylesheet" href="{% static "carrentals/css/owl.theme.default.min.css" %}">
-     <link rel="stylesheet" href="{% static "carrentals/fonts/flaticon/font/flaticon.css" %}">
-     <link rel="stylesheet" href="{% static "carrentals/css/aos.css" %}">
- 
-     <!-- MAIN CSS -->
-     <link rel="stylesheet" href="{% static "carrentals/css/style.css" %}">
+     <!-- STATICS DOCUMENTS -->
+     <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static "font-awesome/css/all.min.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+     <link href="{% static "css/slick.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static "css/slick-theme.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static "css/datepicker.css" %}" rel="stylesheet" type="text/css"/> 
+     <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static "css/mobyle.css" %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static "css/animate.min.css" %}" rel="stylesheet" type="text/css"/>
+
+     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
 
   </head>
 
   <body>
     {% include "navbar.html" %}
-    {% include "aside.html" %}
     
     {% if user.is_authenticated %}
-      {% block content %}
-
-      {% endblock %}
-      {% include "footer_after_login.html" %}
-    {% else %}
-    {% block content1 %}
-      {% include "suscrib.html" %}
-      {% include "carusel.html" %}
       {% include "filtro_busqueda.html" %}
-      {% include "choice_section.html" %}
-      {% include "footer.html" %}
-      {% endblock %}
-    {% endif %}
-        
-    {% comment %} <div class="modal fade text-start" role="dialog" tabindex="-1" data-aos="flip-left" data-aos-once="true" id="modal-1">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" style="padding-left: 168px; font-family: Angkor, serif; color: #00585e; ">
-              Registrarse
-            </h4>
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body"><p></p></div>
-          {% include "users/register.html" %}
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      role="dialog"
-      tabindex="-1"
-      data-aos="fade-down"
-      id="modal-2"
-      style="margin-top: 82px; padding-top: 55px"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          
-          <div class="modal-header" data-aos="fade" style="margin-top: 0px">
-            
-            {% comment %} <h4 class="modal-title">Iniciar Sesión</h4> {% endcomment %}
-{% comment %} 
-            <button
-              class="btn-close"
-              type="button"
-              aria-label="Close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          
-          <div class="modal-body text-center">
-            <div class="card mb-5" style="padding-left: 0px">
-              <img width="90" src="{% static "plantilla/images/logotipo.png" %}" alt="#" style="margin: 0 auto;" />
-              <div class="card-body d-flex flex-column align-items-center">
-                <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
-
-
-
-                  {% include "users/login.html" %}
-                
-                
-                
+      
+      <!-- My Account Start -->
+      <div class="my-account">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="page-container-title">
+                            <h2>{% block name_tab %}{% endblock %}</h2>                               
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link" id="dashboard-nav" data-toggle="pill" href="#" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="nav-link" id="payment-nav" data-toggle="pill" href="{% url "perfil" %}" role="tab"><i class="fa fa-credit-card"></i>Mi Perfil</a>
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="my-address.html" role="tab"><i class="fa fa-map-marker-alt"></i>Mis Autos</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#" role="tab"><i class="fa fa-shopping-bag"></i>Mi Historial</a>
+                            <a class="nav-link" id="payment-nav" data-toggle="pill" href="my-payment.html" role="tab"><i class="fa fa-credit-card"></i>Metodos de pago</a>
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="my-address.html" role="tab"><i class="fa fa-map-marker-alt"></i>Direcciones</a>
+                            <a class="nav-link" id="account-nav" data-toggle="pill" href="my-account-details.html" role="tab"><i class="fa fa-user"></i>Detalles de Perfil</a>
+                            <form method="post" action="{% url 'logout' %}">
+                              {% csrf_token %}
+                              <div class="sign_btn">
+                                <button class="nav-link" type="submit">Cerrar sesión</button>
+                              </div>
+                            </form>
+                            {% comment %} <a class="nav-link" href="index.html"><i class="fa fa-sign-out-alt"></i>Cerrar Sesion</a> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" aria-labelledby="dashboard-nav">
+                                {% block content %}
+
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>        
             </div>
-          </div>
-      </div>
-    </div> {% endcomment %} 
+        </div>
+      </div>        
+      <!-- My Account End -->
+
+      {% include "footer.html" %}
+
+    {% else %}
+
+      {% include "filtro_busqueda.html" %}
+      {% block content1 %}
+
+        {% include "carusel.html" %}
+        {% include "tipos_autos.html" %}
+        {% include "choice_section.html" %}
+        {% include "encuentra_tu_auto.html" %}
+        {% include "contact.html" %}
+
+      {% endblock %}
+      {% include "footer.html" %}
+
+    {% endif %}
 
 
-
-
-    <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-    <!-- RENTO STATIC -->
-    <script src="{% static "rento/js/bootstrap.bundle.min.js" %}"></script>
-    <script src="{% static "rento/js/jquery.min.js" %}"></script>
-    <script src="{% static "rento/js/bootstrap.bundle.min.js" %}"></script>
-    <script src="{% static "rento/js/jquery-3.0.0.min.js" %}"></script>
-
-    <!-- Javascript files-->
-    <script src="{% static "rento/js/popper.min.js" %}"></script>
-    <script src="{% static "rento/js/plugin.js" %}"></script>
-    <!-- sidebar -->
-    <script src="{% static "rento/js/jquery.mCustomScrollbar.concat.min.js" %}"></script>
-    <script src="{% static "rento/js/custom.js" %}"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-
-    <!-- CARRENTALS STATIC -->
-    <script src="{% static "carrentals/js/jquery-3.3.1.min.js" %}"></script>
-    <script src="{% static "carrentals/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "carrentals/js/owl.carousel.min.js" %}"></script>
-    <script src="{% static "carrentals/js/jquery.sticky.js" %}"></script>
-    <script src="{% static "carrentals/js/jquery.waypoints.min.js" %}"></script>
-    <script src="{% static "carrentals/js/jquery.animateNumber.min.js" %}"></script>
-    <script src="{% static "carrentals/js/jquery.fancybox.min.js" %}"></script>
-    <script src="{% static "carrentals/js/jquery.easing.1.3.js" %}"></script>
-    <script src="{% static "carrentals/js/bootstrap-datepicker.min.js" %}"></script>
-    <script src="{% static "carrentals/js/aos.js" %}"></script>
-
-    <script src="{% static "carrentals/js/main.js" %}"></script>
-
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"
-></script>
-    
+    <script src="{% static "jquery/jquery-3.6.0.min.js" %}"></script>
+    <script src="{% static "js/scroll.js" %}"></script>
+    <script src="{% static "js/slick.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.bundle.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/datepicker.min.js" %}"></script>
+    <script src="{% static "js/datecar.js" %}"></script>
 
   </body>
 </html>

@@ -2,87 +2,6 @@
 
 {% load static %}
 
-{% comment %} <form style="padding-bottom: 0px; margin-bottom: 25px" method="post" action="{% url "register" %}">
-  {% csrf_token %}
-  <div
-    class="input-group"
-    style="padding-left: 40px; padding-right: 40px"
-  >
-    <span class="input-group-text">Nombre de usuario</span
-    ><input class="form-control" type="text" id="username" name="username"/>
-  </div>
-  <p></p>
-  <div
-    class="input-group"
-    style="padding-left: 40px; padding-right: 40px"
-  >
-    <span class="input-group-text">Nombres</span
-    ><input class="form-control" type="text" id="first_name" name="first_name"/>
-  </div>
-  <p></p>
-  <div
-    class="input-group"
-    style="padding-left: 40px; padding-right: 40px">
-    <span class="input-group-text">Apellidos</span>
-    <input class="form-control" type="text" id="last_name" name="last_name" />
-  </div>
-  <p></p>
-  <div
-    class="input-group"
-    style="padding-left: 40px; padding-right: 40px">
-    <span class="input-group-text">Email</span
-    ><input class="form-control" type="email" id="email" name="email" />
-  </div>
-  <p></p>
-  <div
-    class="input-group"
-    style="margin-left: 0px; padding-left: 40px; padding-right: 40px">
-    <span class="input-group-text">Contraseña</span
-    ><input class="form-control" type="password" id="password" name="password" />
-  </div>
-  <div
-    class="input-group"
-    style="margin-left: 0px; padding-left: 40px; padding-right: 40px">
-    <span class="input-group-text">Confirmar Contraseña</span
-    ><input class="form-control" type="password" id="confirm_password" name="confirm_password" />
-  </div>
-  <p></p>
-  <div
-    class="form-check form-switch"
-    style="margin-right: 258px; margin-left: 20px; padding-left: 64px"
-  >
-  </div>
-  <div
-    class="btn-group"
-    role="group"
-    style="
-      padding-top: 0px;
-      margin-top: 18px;
-      padding-right: 0px;
-      padding-left: 127px;
-    "
-  >
-    <button
-      class="btn btn-primary"
-      type="submit"
-      style="
-        width: 230px;
-        height: 50px;
-        margin: 0px;
-        padding-top: 7px;
-        padding-right: 16px;
-        padding-bottom: 6px;
-        background: rgb(5, 66, 79);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
-      "
-    >
-      Registrarse
-    </button>
-  </div>
-</form> {% endcomment %}
 
 {% block content1 %}
 
@@ -118,20 +37,20 @@
               {% csrf_token %}
               <!-- Username input -->
               <div class="form-outline mb-4">
-                <input type="text" id="username" name="username" class="form-control" />
+                <input type="text" id="username" name="username" class="form-control border border-primary-subtle" />
                 <label class="form-label" for="form3Example3">Usuario</label>
               </div>
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="first_name" name="first_name" class="form-control" />
+                    <input type="text" id="first_name" name="first_name" class="form-control border border-primary-subtle" />
                     <label class="form-label" for="form3Example1">Nombres</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="last_name" name="last_name" class="form-control" />
+                    <input type="text" id="last_name" name="last_name" class="form-control border border-primary-subtle" />
                     <label class="form-label" for="form3Example2">Apellidos</label>
                   </div>
                 </div>
@@ -139,19 +58,19 @@
 
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="email" name="email" class="form-control" />
+                <input type="email" id="email" name="email" class="form-control border border-primary-subtle" />
                 <label class="form-label" for="form3Example3">Direccion de correo</label>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="password" name="password" class="form-control" />
+                <input type="password" id="password" name="password" class="form-control border border-primary-subtle" />
                 <label class="form-label" for="form3Example4">Contraseña</label>
               </div>
 
               <!-- Confirm Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="confirm_password" name="confirm_password" class="form-control" />
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control border border-primary-subtle" />
                 <label class="form-label" for="form3Example4">Confirmar Contraseña</label>
               </div>
 
@@ -194,7 +113,7 @@
       </div>
 
       <div class="col-lg-6 mb-8 mb-lg-0">
-        <img src="{% static "plantilla/images/banner_registro.jpg" %}" class="w-250 rounded-1 shadow-1"
+        <img src="{% static "image/banner_registro.jpg" %}" class="w-250 rounded-1 shadow-1"
           alt=""/>
       </div>
     </div>

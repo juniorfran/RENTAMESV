@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Paso 2: Detalles adicionales</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="precio_por_hora">Precio por hora:</label>
+            <input type="number" step="any" class="form-control" name="precio_por_hora" required>
+        </div>
+        <div class="form-group">
+            <label for="precio_por_dia">Precio por día:</label>
+            <input type="number" step="any" class="form-control" name="precio_por_dia" required>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="disponibilidad" id="disponibilidad">
+            <label class="form-check-label" for="disponibilidad">Disponibilidad</label>
+        </div>
+        <div class="form-group">
+            <label for="combustible">Combustible:</label>
+            <input type="text" class="form-control" name="combustible">
+        </div>
+        <div class="form-group">
+            <label for="motor">Climatizacion:</label>
+            <input type="text" class="form-control" name="climatizacion">
+        </div>
+        <div class="form-group">
+            <label for="tipo_freno">Kilometraje:</label>
+            <input type="text" class="form-control" name="kilometraje">
+        </div>
+        <div class="form-group">
+            <label for="motor">Motor:</label>
+            <input type="text" class="form-control" name="motor">
+        </div>
+        <div class="form-group">
+            <label for="tipo_freno">Tipo de freno:</label>
+            <input type="text" class="form-control" name="tipo_freno">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+    </form>
+</div>
+
+{% endblock content %}
