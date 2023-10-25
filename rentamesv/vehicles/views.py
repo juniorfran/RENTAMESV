@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from tkinter import Message
+from django.shortcuts import get_object_or_404, render, redirect
 from vehicles.models import Imagen, Vehicle, VehicleType, Location
 from reviews.models import Review
-from users.models import User
+from users.models import User, UserProfile, VehicleOwner
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,7 +38,6 @@ def vehicle_list(request):
     
     return render(request, 'vehicle_list.html', context)
 
-##VISTA PARA CREAR VEHICULOS RELACIONADO AL USUARIO LOGUEADO
 @login_required
 def crear_vehiculo(request):
     # Mueve la definición de las listas locations y vehicle_types aquí para que estén disponibles en el alcance de la vista
@@ -51,49 +51,69 @@ def crear_vehiculo(request):
         anio = request.POST['anio']
         color = request.POST['color']
         puertas = request.POST['puertas']
-        transmision = request.POST['transmision']  # Agrega este campo
+        transmision = request.POST['transmision']
         cilindraje = request.POST['cilindraje']
-        descripcion = request.POST['descripcion']  # Agrega este campo
-        precio_por_hora = request.POST['precio_por_hora']  # Agrega este campo
-        precio_por_dia = request.POST['precio_por_dia']  # Agrega este campo
-        disponibilidad = request.POST.get('disponibilidad')  # Agrega este campo
-        combustible = request.POST['combustible']  # Agrega este campo
-        motor = request.POST['motor']  # Agrega este campo
-        tipo_freno = request.POST['tipo_freno']  # Agrega este campo
+        descripcion = request.POST['descripcion']
+        precio_por_hora = request.POST['precio_por_hora']
+        precio_por_dia = request.POST['precio_por_dia']
+        disponibilidad = request.POST.get('disponibilidad')
+        disponibilidad = disponibilidad == 'on'
+        combustible = request.POST['combustible']
+        motor = request.POST['motor']
+        tipo_freno = request.POST['tipo_freno']
+        tipo_vehiculo = request.POST.get('tipo_vehiculo')
+        location = request.POST.get('ubicacion')
 
         # Obtén el usuario autenticado
         user = request.user
 
-        # Crea un objeto Vehicle relacionado con el usuario autenticado
-        vehicle, creado = Vehicle.objects.get_or_create(owner=user)
-        vehicle.make = marca
-        vehicle.model = modelo
-        vehicle.year = anio
-        vehicle.color = color
-        vehicle.puertas = puertas
-        vehicle.transmision = transmision
-        vehicle.cilindraje = cilindraje
-        vehicle.description = descripcion
-        vehicle.price_hourly = precio_por_hora
-        vehicle.price_daily = precio_por_dia
-        vehicle.availability = disponibilidad
-        vehicle.combustible = combustible
-        vehicle.motor = motor
-        vehicle.tipo_freno = tipo_freno
-        vehicle.save()
+        if user.is_owner:
+            try:
+                # Intenta obtener el VehicleOwner relacionado con el User
+                vehicle_owner, created = VehicleOwner.objects.get_or_create(user=user)
 
-        # Procesa las imágenes
-        imagenes = request.FILES.getlist('imagenes[]')  # Obtiene una lista de archivos
-        for imagen in imagenes:
-            imagen_obj = Imagen(image=imagen)
-            imagen_obj.save()
-            vehicle.image.add(imagen_obj)
+                # Intenta obtener el objeto VehicleType correspondiente al ID proporcionado
+                vehicle_type = VehicleType.objects.get(id=tipo_vehiculo)
+                location = Location.objects.get(id=location)
 
-        return redirect('vehicle_user_list')
+                # Si se encontró un VehicleOwner y un VehicleType válido, procede a crear el vehículo
+                vehicle = Vehicle(owner=vehicle_owner, vehicle_type=vehicle_type, location=location)
+                vehicle.make = marca
+                vehicle.model = modelo
+                vehicle.year = anio
+                vehicle.color = color
+                vehicle.puertas = puertas
+                vehicle.transmision = transmision
+                vehicle.cilindraje = cilindraje
+                vehicle.description = descripcion
+                vehicle.price_hourly = precio_por_hora
+                vehicle.price_daily = precio_por_dia
+                vehicle.availability = disponibilidad
+                vehicle.combustible = combustible
+                vehicle.motor = motor
+                vehicle.tipo_freno = tipo_freno
+                vehicle.save()
+
+                # Procesa las imágenes
+                imagenes = request.FILES.getlist('imagenes[]')
+                for imagen in imagenes:
+                    imagen_obj = Imagen(image=imagen, user=request.user)
+                    imagen_obj.save()
+                    vehicle.image.add(imagen_obj)
+                    
+                return redirect('vehicle_list')
+            
+            except VehicleType.DoesNotExist:
+                # Si no se encontró un VehicleType correspondiente, muestra un mensaje de error
+                Message.error(request, 'El tipo de vehículo seleccionado no es válido.')
+                return redirect('become_owner')
+        else:
+            # Si el usuario no es propietario, redirige al usuario a la página de registro de propietario
+            return redirect('become_owner')
 
     context = {
         'locations': locations,
-        'vehicle_types': vehicle_types
+        'vehicle_types': vehicle_types,
     }
 
     return render(request, 'user/vehicle_user_create.html', context)

@@ -17,20 +17,20 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title text-center">Complete Verification</h2>
-                        <form method="post" enctype="multipart/form-data">
+                        <h2 class="card-title text-center">Verifica tus datos</h2>
+                        <form method="post" >
                             {% csrf_token %}
                             <!-- Campos del formulario -->
                             <div class="mb-3">
-                                <label for="id_document" class="form-label">ID Document:</label>
+                                <label for="id_document" class="form-label">Numero de DUI:</label>
                                 <input type="text" name="id_document" id="id_document" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="emergency_contact" class="form-label">Emergency Contact:</label>
+                                <label for="emergency_contact" class="form-label">Contacto de emergencia:</label>
                                 <input type="text" name="emergency_contact" id="emergency_contact" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="rental_price_hourly" class="form-label">Rental Price (Hourly):</label>
+                                <label for="rental_price_hourly" class="form-label">Precio de renta por hora (Hourly):</label>
                                 <input type="text" name="rental_price_hourly" id="rental_price_hourly" class="form-control" required>
                             </div>
                             <div class="mb-3">

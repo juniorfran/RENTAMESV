@@ -55,9 +55,23 @@
                 <p class="mb-0">
                   <a href="#!" class="text-muted">Ver todo</a>
                 </p>
+
+
+               {% if user.is_owner %}
+                {# El usuario es propietario, muestra el botón para registrar un vehículo #}
                 <p class="mb-0">
-                  <button id="crear-vehiculo-btn" class="btn btn-primary" data-bs-target="#modal-1" data-bs-toggle="modal">Crear Vehículo</button>
+                  <button id="crear-vehiculo-btn" class="btn btn-primary">
+                    <a href="{% url "create_user_vehicle" %}">Crear Vehículo</a>
+                  </button>
                 </p>
+              {% else %}
+                {# El usuario no es propietario, muestra un enlace que redirige a la vista de create_vehicle_or_modal #}
+                <p class="mb-0">
+                  <a id="crear-vehiculo-btn" class="btn btn-primary" href="{% url "perfil" %}">Crear Vehículo</a>
+                </p>
+              {% endif %}               
+              
+                
               </div>
               <div class="row g-2">
                 <div class="col mb-2">

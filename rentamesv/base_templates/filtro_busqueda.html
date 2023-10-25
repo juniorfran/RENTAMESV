@@ -1,5 +1,25 @@
 {% load static %}
 
+
+
+
+    <!-- RENTO STATIC -->
+     <!-- bootstrap css -->
+     <link rel="stylesheet" href="{% static "rento/css/bootstrap.min.css" %}">
+     <!-- style css -->
+     <link rel="stylesheet" href="{% static "rento/css/style.css" %}">
+     <!-- Responsive-->
+     
+     <link rel="stylesheet" href="{% static "rento/css/responsive.css" %}">
+     <!-- fevicon -->
+     <link rel="icon" href="{% static "rento/images/fevicon.png" %}" type="image/gif" />
+     <!-- Scrollbar Custom CSS -->
+     <link rel="stylesheet" href="{% static "rento/css/jquery.mCustomScrollbar.min.css" %}">
+     <!-- Tweaks for older IEs-->
+     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+ 
+
 <!-- bestCar -->
 <div id="contact" class="bestCar">
     <div class="container">
@@ -17,7 +37,7 @@
                       </div>
                       <div class="row">
                          <div class="col-md-12 ">
-                            <select>
+                            <select class="contactus">
                                <option value="0">Choose car Make</option>
                                <option value="1">1</option>
                                <option value="2">2</option>
@@ -25,7 +45,7 @@
                             </select>
                          </div>
                          <div class="col-md-12">
-                            <select>
+                            <select class="contactus">
                                <option value="0">Choose Car Type </option>
                                <option value="1">1</option>
                                <option value="2">2</option>
@@ -36,7 +56,7 @@
                             <input class="contactus" placeholder="Search" type="Search" name="Search">                          
                          </div>
                          <div class="col-md-12">
-                            <select>
+                            <select class="contactus">
                                <option value="0">Price of Rent</option>
                                <option value="1">1</option>
                                <option value="2">2</option>
@@ -56,3 +76,17 @@
  </div>
  <!-- end bestCar -->
 
+
+    <!-- RENTO STATIC -->
+    <script src="{% static "rento/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "rento/js/jquery.min.js" %}"></script>
+    <script src="{% static "rento/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "rento/js/jquery-3.0.0.min.js" %}"></script>
+
+    <!-- Javascript files-->
+    <script src="{% static "rento/js/popper.min.js" %}"></script>
+    <script src="{% static "rento/js/plugin.js" %}"></script>
+    <!-- sidebar -->
+    <script src="{% static "rento/js/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+    <script src="{% static "rento/js/custom.js" %}"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>

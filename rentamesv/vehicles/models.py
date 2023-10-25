@@ -44,6 +44,7 @@ class Vehicle(models.Model):
     
 class Imagen(models.Model):
     image = models.ImageField(upload_to=vehicle_directory_path)
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE)  # Agrega un campo de usuario
     create_add = models.DateField(auto_now=False, auto_now_add=False, null=True)
 
 class VehicleType(models.Model):
@@ -53,6 +54,10 @@ class VehicleType(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=100)  # Nombre de la ubicación
+    departamento = models.CharField(max_length=50, null=True)
+    ciudad = models.CharField(max_length=50, null=True)
+    canton = models.CharField(max_length=50, null=True)
+    referencia = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=200)  # Dirección de la ubicación
     latitude = models.DecimalField(max_digits=10, decimal_places=6)  # Latitud
     longitude = models.DecimalField(max_digits=10, decimal_places=6)  # Longitud

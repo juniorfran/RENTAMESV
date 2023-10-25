@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container mt-4">
+{% comment %} <div class="container mt-4">
   <h1>Lista de Vehículos</h1>
   
   <!-- Lista de vehículos -->
@@ -58,7 +58,89 @@
     {% endfor %}
 </div>
   
-  <!-- Paginación (si es necesario) -->
+  
+</div> {% endcomment %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Agrega cualquier script adicional que necesites -->
+
+   
+    <div class="site-wrap" id="home-section">
+
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h2 class="section-heading"><strong>Car Listings</strong></h2>
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>    
+          </div>
+        </div>
+        
+
+        <div class="row">
+            {% for vehicle in vehicles %}
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                    {% if vehicle.image.all %}
+                        <img src="{{ vehicle.image.first.image.url }}" class="card-img-top img-fluid" alt="{{ vehicle.make }} {{ vehicle.model }}">
+                    {% else %}
+                        <!-- Agregar una imagen de marcador de posición o mensaje si no hay imágenes relacionadas -->
+                        <img src="{% static "plantilla/images/vintage-car-png.webp" %}" class="card-img-top img-fluid">
+                    {% endif %}
+                </div>
+              <div class="listing-contents h-100">
+                <h3>{{ vehicle.make }} {{ vehicle.model }}</h3>
+                <div class="rent-price">
+                  <i class=" color_icono bi bi-currency-dollar"></i>
+                  <strong>{{ vehicle.price_daily }}</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption"><i class=" color_icono bi bi-palette"></i></span>
+                    <span class="number">{{ vehicle.color }}</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption"><i class="color_icono bi bi-door-open"></i></span>
+                    <span class="number">{{ vehicle.puertas }}</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption"><i class="color_icono bi bi-person"></i> </span>
+                    <span class="number">{{ vehicle.capacidad }}</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                      <span class="caption"><i class="color_icono bi bi-gear-wide"></i></i> </span>
+                      <span class="number">{{ vehicle.motor }}</span>
+                  </div>
+                </div>
+                <div>
+                  <p>{{ vehicle.description }}</p>
+                  <p><a href="#" class="btn btn-primary btn-sm">Reservar</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>        
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+      
+    </div>
+
+    <!-- Paginación (si es necesario) -->
   <!-- Paginación -->
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center mt-4">
@@ -95,74 +177,6 @@
         {% endif %}
     </ul>
     </nav>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Agrega cualquier script adicional que necesites -->
-
-  {% endblock %}
 
 
-
-
-  {% comment %}     
-  <div class="row">
-    {% for vehicle in vehicles %}
-    <div class="col-md-3 mb-3">
-        <div class="card h-50">
-          
-            <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.make }} {{ vehicle.model }}" height="150">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ vehicle.make }} {{ vehicle.model }}</h5>
-                <ul class="list-group list-group-flush card_line">
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-calendar-event"></i> {{ vehicle.year }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-box-seam"></i>
-                        {% for types in vehicle_types %}
-                            {{ type.name }}
-                        {% endfor %}
-                    </li>
-                    <li class="list-group-item">
-                        <i class=" color_icono bi bi-currency-dollar"></i> ${{ vehicle.price_daily }}
-                    </li>
-                </ul>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class=" color_icono bi bi-palette"></i> <!-- Icono para el color -->
-                        {{ vehicle.color }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-door-open"></i> <!-- Icono para las puertas -->
-                        {{ vehicle.puertas }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-person"></i> <!-- Icono para la capacidad -->
-                        {{ vehicle.capacidad }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-fuel-pump"></i> <!-- Icono para el combustible -->
-                        {{vehicle.combustible }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-gear-wide"></i> <!-- Icono para el motor -->
-                        {{ vehicle.motor }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="color_icono bi bi-shield-check"></i> <!-- Icono para el tipo de freno -->
-                        {{ vehicle.tipo_freno }}
-                    </li>
-                </ul>
-                <h6 class="card-subtitle mt-3 mb-2 text-muted">Descripción:</h6>
-                <p class="card-text">{{ vehicle.description }}</p>
-                <div class="mt-auto">
-                    <a href="#" class="btn btn-primary">Reservar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-
- {% endcomment %}
+{% endblock %}
